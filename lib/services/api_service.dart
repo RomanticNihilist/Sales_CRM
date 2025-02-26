@@ -12,7 +12,7 @@ class ApiService extends GetxService {
   var softwareId = ''.obs;
 
   final String _globalAccountId = 'b8bbe5c9-ad0d-4874-b563-275a86e4b818';
-  final String _softwareName = "Document Management";
+  final String _softwareName = "Sales CRM";
   final String _versionNumber = "1";
 
   // Hashes password using SHA-512
@@ -82,9 +82,48 @@ class ApiService extends GetxService {
     }
   }
 
-  Future<String> _getSoftwareId(
-      String softwareName, String versionNumber) async {
+  Future<String> _getSoftwareId(String softwareName, String versionNumber) async {
     await Future.delayed(Duration(seconds: 2)); // Simulating network delay
     return "sample_software_id";
+  }
+
+  // Reset Password API
+  Future<bool> resetPassword(String userName) async {
+    try {
+      final headers = {
+        "User-Agent": "Human",
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
+
+      final params = {
+        "inZip": "false",
+        "outZip": "false",
+        "inFormat": "freejson",
+        "outFormat": "freejson",
+        "service": "loginService",
+        "operation": "resetPassword",
+      };
+
+      final data = jsonEncode([userName]);
+      final uri = Uri.parse(restUrl).replace(queryParameters: params);
+      final body = {'arguments': data};
+
+      final response = await http.post(
+        uri,
+        headers: headers,
+        body: body,
+      );
+
+      print(response);
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      print("Error during resetPassword API call: $error");
+      throw error;
+    }
   }
 }
