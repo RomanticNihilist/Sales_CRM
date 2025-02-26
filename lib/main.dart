@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/services/api_service.dart';
 
-import 'login.dart';
+import 'authentication/login.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(ApiService());
-  runApp(MyApp());
+  runApp(SalesCRM());
 }
 
-class MyApp extends StatelessWidget {
+class SalesCRM extends StatelessWidget {
+  const SalesCRM({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GetX API Example',
+      title: 'Sales CRM App',
       home: LoginPage(),
     );
   }
