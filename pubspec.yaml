@@ -59,6 +59,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/keross-logo.png
+    - assets/ikon-logo.png
+    - assets/keross-footer.png
+    - assets/loginPageBackgroundImage.gif
+    - assets/Frame.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
