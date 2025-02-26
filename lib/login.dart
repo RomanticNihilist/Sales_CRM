@@ -18,7 +18,6 @@ class LoginPage extends StatelessWidget {
     'ES': '🇪🇸', // Spanish - Spain flag
   };
 
-
   LoginPage({super.key});
 
   @override
@@ -47,7 +46,7 @@ class LoginPage extends StatelessWidget {
                       children: [
                         const Spacer(),
                         Obx(
-                              () => Container(
+                          () => Container(
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: BoxDecoration(
@@ -58,21 +57,26 @@ class LoginPage extends StatelessWidget {
                             child: DropdownButton<String>(
                               value: languageController.selectedLanguage.value,
                               dropdownColor: Colors.black,
-                              icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white70),
+                              icon: const Icon(Icons.keyboard_arrow_down,
+                                  color: Colors.white70),
                               underline: const SizedBox(),
-                              style: const TextStyle(color: Colors.white70, fontSize: 14),
-                              items: languageController.languages.map((String language) {
+                              style: const TextStyle(
+                                  color: Colors.white70, fontSize: 14),
+                              items: languageController.languages
+                                  .map((String language) {
                                 return DropdownMenuItem<String>(
                                   value: language,
                                   child: Text(
                                     '${languageFlags[language] ?? '🏳️'} $language',
-                                    style: const TextStyle(fontSize: 16, color: Colors.white70),
+                                    style: const TextStyle(
+                                        fontSize: 16, color: Colors.white70),
                                   ),
                                 );
                               }).toList(),
                               onChanged: (String? newLanguage) {
                                 if (newLanguage != null) {
-                                  languageController.updateLanguage(newLanguage);
+                                  languageController
+                                      .updateLanguage(newLanguage);
                                 }
                               },
                             ),
@@ -92,7 +96,8 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
@@ -113,7 +118,9 @@ class LoginPage extends StatelessWidget {
                             children: [
                               Image.asset('assets/ikon-logo.png', height: 40),
                               const SizedBox(height: 10),
-                              const Text('Harness the Power of Data', style: TextStyle(color: Colors.black87, fontSize: 14)),
+                              const Text('Harness the Power of Data',
+                                  style: TextStyle(
+                                      color: Colors.black87, fontSize: 14)),
                               const SizedBox(height: 20),
                               CustomInput(
                                 controller: usernameController,
@@ -134,7 +141,8 @@ class LoginPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
-                                  child: const Text('Forgot Password?', style: TextStyle(color: Colors.white)),
+                                  child: const Text('Forgot Password?',
+                                      style: TextStyle(color: Colors.white)),
                                   onPressed: () {
                                     // Navigate to ForgotPassword page if implemented
                                   },
@@ -145,78 +153,75 @@ class LoginPage extends StatelessWidget {
                                 return loginController.isLoading.value
                                     ? const CircularProgressIndicator()
                                     : SizedBox(
-                                  width: double.infinity,
-                                  height: 48,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF407BFF),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-                                        Get.snackbar(
-                                          "Error",
-                                          "Username and Password cannot be empty",
-                                          snackPosition: SnackPosition.TOP,
-                                          colorText: Colors.white, // White text
-                                          duration: const Duration(seconds: 3), // Duration to show
-                                        );
+                                        width: double.infinity,
+                                        height: 48,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                const Color(0xFF407BFF),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            if (usernameController
+                                                    .text.isEmpty ||
+                                                passwordController
+                                                    .text.isEmpty) {
+                                              Get.snackbar(
+                                                "Error",
+                                                "Username and Password cannot be empty",
+                                                snackPosition:
+                                                    SnackPosition.TOP,
+                                                colorText:
+                                                    Colors.white, // White text
+                                                duration: const Duration(
+                                                    seconds:
+                                                        3), // Duration to show
+                                              );
+                                            } else if (_formKey.currentState!
+                                                .validate()) {
+                                              loginController.isLoading.value =
+                                                  true;
 
-                                      } else if (_formKey.currentState!.validate()) {
-                                        loginController.isLoading.value = true;
-                                        showDialog(
-                                          context: context,
-                                          barrierDismissible: false,
-                                          builder: (BuildContext context) {
-                                            return Dialog(
-                                              backgroundColor: Colors.transparent,
-                                              elevation: 0,
-                                              child: Center(
-                                                child: Container(
-                                                  padding: const EdgeInsets.all(20),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius: BorderRadius.circular(10),
-                                                  ),
-                                                  child: const Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      CircularProgressIndicator(
-                                                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF407BFF)),
-                                                      ),
-                                                      SizedBox(width: 20),
-                                                      Text(
-                                                        "Logging in...",
-                                                        style: TextStyle(fontSize: 16),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
+                                              
+                                              loginController
+                                                  .login(
+                                                usernameController.text,
+                                                passwordController.text,
+                                              )
+                                                  .then((_) {
+                                                loginController
+                                                    .isLoading.value = false;
+
+                                              }).catchError((error) {
+                                                loginController
+                                                    .isLoading.value = false;
+                                                Get.snackbar(
+                                                  "Error",
+                                                  "Login failed. Please check your credentials.",
+                                                  snackPosition:
+                                                      SnackPosition.TOP,
+                                                  colorText: Colors
+                                                      .white, // White text
+                                                  duration: const Duration(
+                                                      seconds:
+                                                          3), // Duration to show
+                                                );
+                                              });
+                                            }
                                           },
-                                        );
-                                        loginController.login(
-                                          usernameController.text,
-                                          passwordController.text,
-                                        ).then((_) {
-                                          loginController.isLoading.value = false;
-                                          Navigator.of(context, rootNavigator: true).pop();
-                                        });
-                                      }
-                                    },
-                                    child: const Text(
-                                      'Login',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                );
+                                          child: const Text(
+                                            'Login',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      );
                               }),
                               const SizedBox(height: 10),
                               SizedBox(
