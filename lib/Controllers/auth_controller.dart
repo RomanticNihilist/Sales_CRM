@@ -19,7 +19,7 @@ class AuthController extends GetxController {
       Get.snackbar(
         "Success", "Logged in successfully!",
         snackPosition: SnackPosition.TOP,
-        colorText: Colors.white,
+        colorText: Colors.black,
         duration: const Duration(seconds: 3),
       );
     } else {
