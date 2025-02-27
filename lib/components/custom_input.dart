@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../style/app_styles.dart';
 
 enum InputType { text, number, date, password, time } // Enum for input types
