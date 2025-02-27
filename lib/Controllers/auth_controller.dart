@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/screen/sales_crm_entry_point_android.dart';
 import 'package:sale_crm/authentication/login.dart';
 import '../services/api_service.dart';
 
@@ -14,7 +15,7 @@ class AuthController extends GetxController {
     isLoading.value = false;
 
     if (isSuccess) {
-      // Get.offAll(() => const DocumentManagementEntryPoint());
+      Get.offAll(() => SalesCrmEntryPointAndroid());
       Get.snackbar(
         "Success", "Logged in successfully!",
         snackPosition: SnackPosition.TOP,
