@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../../common_components/custom_appbar/controller/app_bar_controller.dart';
+import '../../common_components/custom_appbar/view/custom_app_bar.dart';
 import '../../utils/color_constants.dart';
 import '../controller/sales_crm_entry_point_android_controller.dart';
 
@@ -13,12 +15,7 @@ class SalesCrmEntryPointAndroid extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sales CRM App",
-        ),
-        centerTitle: false,
-      ),
+      appBar: CustomAppBar(),
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
         notchMargin: 10,
@@ -79,7 +76,9 @@ class SalesCrmEntryPointAndroid extends StatelessWidget{
   Widget _bottomAppBarItem(BuildContext context,
       {required icon, required page, required label}) {
     return ZoomTapAnimation(
-      onTap: () => _salesCrmEntryPointAndroidController.goToTab(page),
+      onTap: () {
+         _salesCrmEntryPointAndroidController.goToTab(page);
+        },
       child: Container(
         color: Colors.transparent,
         child: Column(
