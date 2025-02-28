@@ -29,7 +29,7 @@ class AuthController extends GetxController {
         "Success",
         "Logged in successfully!",
         snackPosition: SnackPosition.TOP,
-        colorText: Colors.white,
+        colorText: Colors.black,
         duration: const Duration(seconds: 3),
       );
     } else {
