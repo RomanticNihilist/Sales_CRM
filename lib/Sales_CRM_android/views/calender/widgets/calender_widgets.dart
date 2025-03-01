@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:get/get.dart';
+import '../controller/calender_controller.dart';
+
+class CalendarWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final CalendarControllerX calendarControllerX = Get.find();
+
+    return Obx(() {
+      return SfCalendar(
+        controller: calendarControllerX.calendarController,
+        view: _getViewFromController(calendarControllerX.selectedView.value),
+        monthViewSettings: MonthViewSettings(showAgenda: true),
+        dataSource: MeetingDataSource(calendarControllerX.appointments.toList()),
+
+        onTap: (details) {
+          if (details.appointments != null && details.appointments!.isNotEmpty) {
+            List<Appointment> tappedAppointments = details.appointments!
+                .whereType<Appointment>()
+                .toList();
+            _showEventMessage(context, tappedAppointments);
+          }
+        },
+      );
+    });
+  }
+
+  CalendarView _getViewFromController(String view) {
+    switch (view) {
+      case "Week":
+        return CalendarView.week;
+      case "Day":
+        return CalendarView.day;
+      case "Month":
+      default:
+        return CalendarView.month;
+    }
+  }
+
+  void _showEventMessage(BuildContext context, List<Appointment> events) {
+    final event = events.isNotEmpty ? events.first : null;
+    if (event != null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Event Tapped"),
+            content: Text("You tapped on event: ${event.subject}"),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+}
+
+
+// Data source for the calendar appointments
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Appointment> source) {
+    appointments = source;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].color ?? Colors.blue;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments![index].isAllDay;
+  }
+}

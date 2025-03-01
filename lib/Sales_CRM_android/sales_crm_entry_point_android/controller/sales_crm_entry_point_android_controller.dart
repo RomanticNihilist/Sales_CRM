@@ -14,7 +14,7 @@ class SalesCrmEntryPointAndroidController extends GetxController {
 
 
   List<Widget> pages = [
-    CalenderScreen(),
+    CalendarScreen(),
     HomeScreen(),
     LeadScreen(),
     ContactScreen(),

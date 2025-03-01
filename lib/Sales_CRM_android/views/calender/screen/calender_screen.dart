@@ -1,22 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+import 'package:get/get.dart';
+import '../controller/calender_controller.dart';
+import '../widgets/calender_widgets.dart';
 
-class CalenderScreen extends StatelessWidget{
-  const CalenderScreen({super.key});
+
+class CalendarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Calender",
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
-        const Icon(
-          IconlyLight.calendar,
-          size: 40,
-        ),
-      ],
+    final CalendarControllerX calendarControllerX = Get.put(CalendarControllerX()); // Initialize the controller
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Calendar'),
+        actions: [
+          // Popup menu to switch between Month, Week, Day view
+          PopupMenuButton<String>(
+            onSelected: (view) {
+              calendarControllerX.changeView(view);
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(value: "Month", child: Text("Month View")),
+              PopupMenuItem(value: "Week", child: Text("Week View")),
+              PopupMenuItem(value: "Day", child: Text("Day View")),
+            ],
+          ),
+          // Icon button to select a date
+          IconButton(
+            icon: Icon(Icons.calendar_month),
+            onPressed: () async {
+              final DateTime? picked = await showDatePicker(
+                context: context,
+                initialDate: calendarControllerX.selectedDate.value,
+                firstDate: DateTime(2000, 1),
+                lastDate: DateTime(2100, 12),
+                initialDatePickerMode: DatePickerMode.year,
+              );
+              if (picked != null) {
+                calendarControllerX.changeDate(picked);
+              }
+            },
+          ),
+        ],
+      ),
+      body: CalendarWidget(), // Display the calendar view
+      floatingActionButton: FloatingActionButton(
+        onPressed: calendarControllerX.onFloatingActionButtonPressed,  // Calls controller method to add event
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
+
+
