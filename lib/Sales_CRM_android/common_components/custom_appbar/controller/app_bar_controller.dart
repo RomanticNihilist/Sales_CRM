@@ -16,7 +16,11 @@ class AppBarController extends GetxController {
       case 3:
         return "Contacts";
       case 4:
-        return "Profile";
+        return "Account";
+      case 5:
+        return "Deals";
+      case 6:
+        return "Task";
       default:
         return "Sales CRM";
     }
