@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/controller/sales_crm_entry_point_android_controller.dart';
 
@@ -18,6 +19,24 @@ class AppBarController extends GetxController {
         return "Profile";
       default:
         return "Sales CRM";
+    }
+  }
+
+
+  IconData getLeftIcon(String title) {
+    switch (title) {
+      case "Calender":
+        return Icons.calendar_month_outlined;
+      case "Home":
+        return Icons.home_sharp;
+      case "Leads":
+        return Icons.leaderboard_outlined;
+      case "Contacts":
+        return Icons.phone_android_outlined;
+      case "Profile":
+        return Icons.person_2_outlined;
+      default:
+        return Icons.dashboard;
     }
   }
 }

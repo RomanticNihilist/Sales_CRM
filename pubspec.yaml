@@ -40,6 +40,7 @@ dependencies:
   iconly: ^1.0.1
   zoom_tap_animation: ^1.1.0
   flutter_speed_dial: ^7.0.0
+  syncfusion_flutter_calendar: ^21.1.50
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/screen/sales_crm_entry_point_android.dart';
 import 'package:sale_crm/authentication/login.dart';
+import '../Sales_CRM_iOS/sales_CRM_entry_point_iOS/screen/sales_crm_entry_point_ios.dart';
 import '../services/api_service.dart';
 
 class AuthController extends GetxController {
@@ -15,16 +18,24 @@ class AuthController extends GetxController {
     isLoading.value = false;
 
     if (isSuccess) {
-      Get.offAll(() => SalesCrmEntryPointAndroid());
+      // Get.offAll(() => SalesCrmEntryPointAndroid());
+      if (Platform.isAndroid) {
+        Get.offAll(() => SalesCrmEntryPointAndroid());
+      } else if (Platform.isIOS) {
+        // Replace with your iOS entry point
+        Get.offAll(() => SalesCrmEntryPointIOS());
+      }
       Get.snackbar(
-        "Success", "Logged in successfully!",
+        "Success",
+        "Logged in successfully!",
         snackPosition: SnackPosition.TOP,
-        colorText: Colors.white,
+        colorText: Colors.black,
         duration: const Duration(seconds: 3),
       );
     } else {
       Get.snackbar(
-        "Error", "Invalid username or password",
+        "Error",
+        "Invalid username or password",
         snackPosition: SnackPosition.TOP,
         colorText: Colors.white,
         duration: const Duration(seconds: 3),

@@ -9,7 +9,7 @@ class FloatingActionButtonController extends GetxController{
   RxInt get currentPageIndex => _salesCrmEntryPointAndroidController.currentPage;
 
   List<SpeedDialChild> getSpeedDialOptions() {
-    if (currentPageIndex == 2) {
+    if (currentPageIndex.value == 2) {
       return [
         SpeedDialChild(
           child: Icon(Icons.person_add),
@@ -22,7 +22,7 @@ class FloatingActionButtonController extends GetxController{
           onTap: () => print("Import Lead Clicked"),
         ),
       ];
-    } else if (currentPageIndex == 3) {
+    } else if (currentPageIndex.value == 3) {
       return [
         SpeedDialChild(
           child: Icon(Icons.person_add),
