@@ -18,13 +18,14 @@ class AuthController extends GetxController {
     isLoading.value = false;
 
     if (isSuccess) {
-      // Get.offAll(() => SalesCrmEntryPointAndroid());
+      Get.offAll(() => SalesCrmEntryPointAndroid());
       if (Platform.isAndroid) {
         Get.offAll(() => SalesCrmEntryPointAndroid());
       } else if (Platform.isIOS) {
         // Replace with your iOS entry point
         Get.offAll(() => SalesCrmEntryPointIOS());
       }
+      // Get.offAll(() => SalesCrmEntryPointIOS());
       Get.snackbar(
         "Success",
         "Logged in successfully!",
