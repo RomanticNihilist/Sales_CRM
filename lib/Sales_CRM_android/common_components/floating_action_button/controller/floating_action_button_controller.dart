@@ -3,6 +3,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/controller/sales_crm_entry_point_android_controller.dart';
 
+import '../../../views/contacts/forms/add_contact.dart';
+
 class FloatingActionButtonController extends GetxController{
   final SalesCrmEntryPointAndroidController _salesCrmEntryPointAndroidController = Get.find<SalesCrmEntryPointAndroidController>();
 
@@ -27,7 +29,9 @@ class FloatingActionButtonController extends GetxController{
         SpeedDialChild(
           child: Icon(Icons.person_add),
           label: "Add Contact",
-          onTap: () => print("Add Contact Clicked"),
+          onTap: (){
+            Get.to(AddContactScreen());
+          },
         ),
         SpeedDialChild(
           child: Icon(Icons.import_contacts),
