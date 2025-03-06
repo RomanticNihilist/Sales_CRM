@@ -37,9 +37,12 @@ class LoginPageIos extends StatelessWidget {
                 child: Column(
                   children: [
                     buildLogoSectionIos(),
+
                     buildLanguageDropdownIos(languageController, languageFlags),
                     buildTaglineIos(),
+                    SizedBox(height: 20),
                     buildLoginFormIos(context, _formKey, usernameController, passwordController, authController),
+
                     buildFooterIos(),
                   ],
                 ),

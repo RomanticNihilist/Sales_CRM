@@ -106,10 +106,12 @@ class _CustomInputIOSState extends State<CustomInputIOS> {
             },
           )
               : widget.suffixIcon,
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: theme.scaffoldBackgroundColor,
             border: Border.all(color: theme.primaryColor.withOpacity(0.5)),
             borderRadius: BorderRadius.circular(8.0),
+
           ),
         ),
       ),

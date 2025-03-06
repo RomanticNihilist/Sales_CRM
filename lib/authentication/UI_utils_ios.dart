@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/components/custom_input_IOS.dart';
 import '../Controllers/auth_controller.dart';
@@ -38,6 +37,7 @@ Widget buildLanguageDropdownIos(
   );
 }
 
+
 Widget buildDropdownIos(
     LanguageController languageController, Map<String, String> languageFlags) {
   // return Container(
@@ -66,28 +66,91 @@ Widget buildDropdownIos(
   //   ),
   // );
   return Container(
-  width: 200, // Set a fixed width for the picker
-  child: CupertinoPicker(
-    scrollController: FixedExtentScrollController(
-      initialItem: languageController.languages.indexOf(languageController.selectedLanguage.value),
+    width: 200, // Set a fixed width for the picker
+    child: CupertinoPicker(
+      scrollController: FixedExtentScrollController(
+        initialItem: languageController.languages.indexOf(
+            languageController.selectedLanguage.value),
+      ),
+      itemExtent: 32.0,
+      onSelectedItemChanged: (int index) {
+        languageController.updateLanguage(languageController.languages[index]);
+      },
+      children: languageController.languages.map((String language) {
+        return Center(
+          child: Text(
+            '${languageFlags[language] ?? '🏳️'} $language',
+            style: const TextStyle(
+                fontSize: 16, color: CupertinoColors.systemGrey),
+          ),
+        );
+      }).toList(),
     ),
-    itemExtent: 32.0,
-    onSelectedItemChanged: (int index) {
-      languageController.updateLanguage(languageController.languages[index]);
-    },
-    children: languageController.languages.map((String language) {
-      return Center(
-        child: Text(
-          '${languageFlags[language] ?? '🏳️'} $language',
-          style: const TextStyle(fontSize: 16, color: CupertinoColors.systemGrey),
-        ),
-      );
-    }).toList(),
-  ),
-);
-
-
+  );
 }
+
+// Widget buildLanguageDropdownIos(LanguageController languageController, Map<String, String> languageFlags) {
+//   return Row(
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     children: [
+//       const Spacer(),
+//       Obx(() => buildDropdownIos(languageController, languageFlags)),
+//       const Spacer(),
+//     ],
+//   );
+// }
+
+// Widget buildDropdownIos(LanguageController languageController, Map<String, String> languageFlags) {
+//   return Container(
+//     padding: const EdgeInsets.symmetric(horizontal: 12),
+//     decoration: BoxDecoration(
+//       color: CupertinoColors.systemGrey5,
+//       borderRadius: BorderRadius.circular(8),
+//       border: Border.all(color: CupertinoColors.systemGrey),
+//     ),
+//     child: CupertinoButton(
+//       padding: EdgeInsets.zero,
+//       onPressed: () async {
+//         // Open a CupertinoPicker to select language
+//         var context;
+//         await showCupertinoModalPopup(
+//           context: context,
+//           builder: (BuildContext context) {
+//             return CupertinoActionSheet(
+//               title: const Text('Select Language'),
+//               actions: languageController.languages.map((String language) {
+//                 return CupertinoActionSheetAction(
+//                   onPressed: () {
+//                     languageController.updateLanguage(language);
+//                     Navigator.pop(context); // Close the action sheet
+//                   },
+//                   child: Text('${languageFlags[language] ?? '🏳️'} $language'),
+//                 );
+//               }).toList(),
+//               cancelButton: CupertinoActionSheetAction(
+//                 onPressed: () {
+//                   Navigator.pop(context); // Close the action sheet
+//                 },
+//                 isDestructiveAction: true,
+//                 child: const Text('Cancel'),
+//               ),
+//             );
+//           },
+//         );
+//       },
+//       child: Row(
+//         children: [
+//           Text(
+//             '${languageFlags[languageController.selectedLanguage.value] ?? '🏳️'} ${languageController.selectedLanguage.value}',
+//             style: const TextStyle(fontSize: 16, color: CupertinoColors.black),
+//           ),
+//           const Icon(CupertinoIcons.chevron_down),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+
 
 Widget buildTaglineIos() {
   return const Padding(
@@ -107,6 +170,7 @@ Widget buildTaglineIos() {
 Widget buildFooterIos() {
   return Column(
     children: [
+      const SizedBox(height: 40),
       const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -127,7 +191,7 @@ Widget buildFooterIos() {
           ),
         ],
       ),
-      const SizedBox(height: 60),
+      const SizedBox(height: 30),
       const Text('Looking for Support?',
           style: TextStyle(color: CupertinoColors.white, fontSize: 14)),
       const SizedBox(height: 5),
@@ -209,29 +273,58 @@ Widget buildLoginFormIos(BuildContext context, GlobalKey<FormState> formKey,
     TextEditingController usernameController, TextEditingController passwordController, AuthController authController) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-    child: CupertinoFormSection.insetGrouped(
-      children: [
-        CustomInputIOS(
-          controller: usernameController,
-          labelText: 'Username',
-          hintText: 'Enter your username',
-          isMandatory: true,
-          prefixIcon: const Icon(CupertinoIcons.person),
+    child: Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: CupertinoColors.white.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: CupertinoColors.transparent,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset('assets/ikon-logo.png', height: 40),
+            const SizedBox(height: 10),
+            const Text(
+              'Harness the Power of Data',
+              style: TextStyle(color: CupertinoColors.black, fontSize: 14),
+            ),
+            const SizedBox(height: 20),
+            CustomInputIOS(
+              controller: usernameController,
+              labelText: 'Username',
+              hintText: 'Enter your username',
+              isMandatory: true,
+              prefixIcon: const Icon(CupertinoIcons.person),
+            ),
+            const SizedBox(height: 10),
+            CustomInputIOS(
+              controller: passwordController,
+              labelText: 'Password',
+              hintText: 'Enter your password',
+              isMandatory: true,
+              prefixIcon: const Icon(CupertinoIcons.lock),
+              inputType: InputType.password,
+            ),
+            buildForgotPasswordIos(),
+            buildLoginButtonIos(context, authController, usernameController, passwordController),
+            const SizedBox(height: 10),
+            buildResetButtonInLoginIos(usernameController, passwordController),
+          ],
         ),
-        CustomInputIOS(
-          controller: passwordController,
-          labelText: 'Password',
-          hintText: 'Enter your password',
-          isMandatory: true,
-          prefixIcon: const Icon(CupertinoIcons.lock),
-          inputType: InputType.password,
-        ),
-        buildForgotPasswordIos(),
-        buildLoginButtonIos(context, authController, usernameController, passwordController),
-        buildResetButtonInLoginIos(usernameController, passwordController),
-      ],
+      ),
     ),
   );
+
+
 }
 
 Widget buildResetButtonInLoginIos(TextEditingController usernameController, TextEditingController passwordController) {
@@ -277,3 +370,5 @@ Widget buildLoginButtonIos(BuildContext context, AuthController authController, 
           );
   });
 }
+
+
