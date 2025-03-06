@@ -35,7 +35,6 @@ void handleResetPasswordIos(GlobalKey<FormState> formKey, TextEditingController 
 }
 
 void handleLoginIos(BuildContext context, TextEditingController usernameController, TextEditingController passwordController, AuthController authController) {
-  // if (formKey.currentState!.validate()) {
   if(usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
     authController.isLoading.value = true;
     authController.login(usernameController.text, passwordController.text);

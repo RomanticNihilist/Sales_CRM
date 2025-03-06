@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 // import 'package:flutter/material.dart';
-import 'package:sale_crm/Sales_CRM_iOS/views/home/screen/home_ios.dart';
-import 'package:sale_crm/Sales_CRM_iOS/views/leads/screen/leads_ios.dart';
 
+import '../../common_components_ios/custom_appbar_ios/view/custom_appbar.dart';
 import '../controller/sales_crm_entry_point_ios_controller.dart';
 
 class SalesCrmEntryPointIOS extends StatelessWidget {
@@ -11,35 +11,36 @@ class SalesCrmEntryPointIOS extends StatelessWidget {
   final SalesCrmEntryPointIosController _salesCrmEntryPointIosController =
       Get.put(SalesCrmEntryPointIosController());
 
-  final List<String> tabs = ["Home", "Leads", "Contacts", "Accounts", "More"];
-  final List<IconData> icons = [
-    CupertinoIcons.house_fill,
-    CupertinoIcons.person_2_fill,
-    CupertinoIcons.person_crop_circle_fill,
-    CupertinoIcons.building_2_fill,
-    CupertinoIcons.ellipsis_circle_fill,
-  ];
-
-   @override
+  @override
   Widget build(BuildContext context) {
+
+    final List<String> tabs =
+        ["Home", "Leads", "Contacts", "Accounts", "More"].obs;
+    final List<IconData> icons = [
+      IconlyBroken.home,
+      IconlyBroken.bookmark,
+      IconlyBroken.user_2,
+      IconlyBroken.activity,
+      IconlyBroken.more_circle,
+    ].obs;
+
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text("Sales CRM"),
-      ),
+      navigationBar: CustomAppbar(),
       child: Column(
         children: [
           // Page View (Scrollable Content)
           Expanded(
             child: PageView(
               controller: _salesCrmEntryPointIosController.pageController,
-              onPageChanged: (index) => _salesCrmEntryPointIosController.currentPage.value = index,
+              onPageChanged: (index) =>
+                  _salesCrmEntryPointIosController.currentPage.value = index,
               children: _salesCrmEntryPointIosController.pages,
             ),
           ),
 
           // Scrollable Bottom Navigation Bar
           Obx(() => Container(
-                padding: EdgeInsets.symmetric(vertical: 8),
+                // padding: EdgeInsets.symmetric(vertical: 8),
                 color: CupertinoColors.systemGrey6,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -47,21 +48,27 @@ class SalesCrmEntryPointIOS extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(tabs.length, (index) {
                       return GestureDetector(
-                        onTap: () => _salesCrmEntryPointIosController.goToTab(index),
+                        onTap: () =>
+                            _salesCrmEntryPointIosController.animateToTab(index),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 17),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(icons[index],
-                                  color: _salesCrmEntryPointIosController.currentPage.value == index
+                                  color: _salesCrmEntryPointIosController
+                                              .currentPage.value ==
+                                          index
                                       ? CupertinoColors.activeBlue
                                       : CupertinoColors.inactiveGray),
                               Text(
                                 tabs[index],
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: _salesCrmEntryPointIosController.currentPage.value == index
+                                  color: _salesCrmEntryPointIosController
+                                              .currentPage.value ==
+                                          index
                                       ? CupertinoColors.activeBlue
                                       : CupertinoColors.inactiveGray,
                                 ),
