@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/custom_appbar/controller/app_bar_controller.dart';
 import 'package:sale_crm/services/api_service.dart';
+import 'package:sale_crm/splash_screen.dart';
 
 import 'authentication/login.dart';
 
@@ -19,7 +20,7 @@ class SalesCRM extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sales CRM App',
-      home: LoginPage(),
+      home: SplashScreen(),
     );
   }
 }
