@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/custom_appbar/controller/app_bar_controller.dart';
-import 'package:sale_crm/authentication/login_ios.dart';
 import 'package:sale_crm/services/api_service.dart';
 
 import 'authentication/login.dart';
+import 'authentication/login_ios.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
