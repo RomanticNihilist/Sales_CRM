@@ -48,21 +48,22 @@ class ApiService extends GetxService {
       };
 
       final credential = '''
-    <list>
-      <string>
-        <content><![CDATA[$username]]></content>
-      </string>
-      <string>
-        <content><![CDATA[$hashedPassword]]></content>
-      </string>
-    </list>
-    '''.trim().replaceAll(RegExp(r'\s+'), ''); // Ensure correct formatting
+<list>
+  <string>
+    <content><![CDATA[$username]]></content>
+  </string>
+  <string>
+    <content><![CDATA[$hashedPassword]]></content>
+  </string>
+</list>
+'''
+          .trim()
+          .replaceAll(RegExp(r'\s+'), '');
 
       final uri = Uri.parse(restUrl).replace(queryParameters: params);
       final body = {'arguments': credential};
 
       final response = await http.post(uri, headers: headers, body: body);
-      print("Raw Response: ${response.body}"); // Debugging
 
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
