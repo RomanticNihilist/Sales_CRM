@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/controller/sales_crm_entry_point_android_controller.dart';
 
 import '../../../views/contacts/forms/add_contact.dart';
+import '../../../views/leads/forms/forms_screen/add_lead_form_screen.dart';
 
 class FloatingActionButtonController extends GetxController{
   final SalesCrmEntryPointAndroidController _salesCrmEntryPointAndroidController = Get.find<SalesCrmEntryPointAndroidController>();
@@ -16,7 +17,9 @@ class FloatingActionButtonController extends GetxController{
         SpeedDialChild(
           child: Icon(Icons.person_add),
           label: "Add Lead",
-          onTap: () => print("Add Lead Clicked"),
+          onTap: () {
+            Get.to((AddLeadFormScreen()));
+          },
         ),
         SpeedDialChild(
           child: Icon(Icons.import_contacts),
