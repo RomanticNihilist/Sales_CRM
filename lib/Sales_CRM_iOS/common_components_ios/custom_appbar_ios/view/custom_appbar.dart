@@ -31,18 +31,22 @@ class CustomAppbar extends StatelessWidget
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {},
-                  child: Icon(IconlyLight.search,),
+                  child: Icon(
+                    IconlyLight.search,
+                  ),
                 ),
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  child: Icon(CupertinoIcons.plus),
-                ),
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  child: Icon(CupertinoIcons.ellipsis_vertical),
-                ),
+                if (_customAppbarController.getAppBarTitle() != "Home")
+                  CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {},
+                    child: Icon(CupertinoIcons.plus),
+                  ),
+                if (_customAppbarController.getAppBarTitle() != "Home")
+                  CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {},
+                    child: Icon(CupertinoIcons.ellipsis_vertical),
+                  ),
               ],
             ),
           ),
