@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/custom_appbar_ios/controller/custom_appbar_controller.dart';
 
+import '../../search_bar_ios/widget/search_bar_widget.dart';
+
 class CustomAppbar extends StatelessWidget
     implements ObstructingPreferredSizeWidget {
   CustomAppbar({super.key});
@@ -30,7 +32,9 @@ class CustomAppbar extends StatelessWidget
               children: [
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(SearchPage());
+                  },
                   child: Icon(
                     IconlyLight.search,
                   ),
