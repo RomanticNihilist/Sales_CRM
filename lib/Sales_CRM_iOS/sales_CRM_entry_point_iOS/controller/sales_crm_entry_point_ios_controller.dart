@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/billing/screen/billing_ios.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/deals/screen/deals_ios.dart';
 import 'package:sale_crm/Sales_CRM_iOS/views/home/screen/home_ios.dart';
 
 import '../../views/accounts/screen/accouts_ios.dart';
@@ -11,13 +13,12 @@ class SalesCrmEntryPointIosController extends GetxController {
   RxInt currentPage = 0.obs;
 
   List<Widget> pages = [
-    // CalendarScreen(),
     HomeIos(),
     LeadsIos(),
     ContactsIos(),
     AccountsIos(),
-    // ContactScreen(),
-    // ProfileScreen()
+    DealsIos(),
+    BillingIos(),
   ];
 
   void goToTab(int page) {
