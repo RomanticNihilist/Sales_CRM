@@ -95,7 +95,6 @@ class _CustomInputIOSState extends State<CustomInputIOS> {
             padding: EdgeInsets.only(left: 7.0),
             child: widget.prefixIcon,
           ),
-
           suffix: widget.inputType == InputType.password
               ? CupertinoButton(
             padding: EdgeInsets.zero,
@@ -110,7 +109,7 @@ class _CustomInputIOSState extends State<CustomInputIOS> {
             },
           )
               : widget.suffixIcon,
-          padding: EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.0),
           decoration: BoxDecoration(
             color: theme.scaffoldBackgroundColor,
             border: Border.all(color: theme.primaryColor.withOpacity(0.5)),

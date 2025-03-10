@@ -202,7 +202,6 @@ import '../style/app_styles.dart';
 //   }
 // }
 
-
 class GenericDropdownController<T> extends ChangeNotifier {
   T? selectedValue; // For single selection
   List<T>? selectedValues; // For multiple selection
