@@ -96,7 +96,7 @@ class GenericDropdownIos<T> extends StatelessWidget {
           onTap: () => _showDropdownDialog(context),
           child: AbsorbPointer(
             child: CupertinoTextField(
-              controller: textController,
+              controller: controller.textController,
               readOnly: true,
               style: TextStyle(
                 fontSize: 16.0,
@@ -152,15 +152,23 @@ class GenericDropdownIos<T> extends StatelessWidget {
               // ),
               content: Container(
                 height: 400.0, // Fixed height for the dialog
-                width: 300.0, // Optional fixed width
+                width: double.infinity, // Optional fixed width
+                // color: CupertinoColors.white,
+                // constraints: BoxConstraints(maxWidth: 800.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(bottom:8.0),
                       child: CupertinoTextField(
                         placeholder: "Search...",
-                        prefix: Icon(CupertinoIcons.search,
-                            color: theme.primaryColor),
+                        prefix: Padding(
+                          padding: const EdgeInsets.only(left:8.0),
+                          child: Icon(CupertinoIcons.search,
+                              color: theme.primaryColor),
+                        ),
                         onChanged: (text) {
                           controller.updateSearchText(text);
                           setState(() {}); // Update the filtered items
@@ -177,32 +185,32 @@ class GenericDropdownIos<T> extends StatelessWidget {
                                     false
                                 : controller.selectedValue == item;
 
-                            return Row(
-                              children: [
-                                Text(displayValue(item)),
-                                CupertinoCheckbox(
-                                  value: isSelected,
-                                  // title: Text(displayValue(item)),
-                                  onChanged: (bool? selected) {
-                                    if (isMultiSelect) {
-                                      final newSelectedValues = List<T>.from(
-                                          controller.selectedValues ?? []);
-                                      if (selected == true) {
-                                        newSelectedValues.add(item);
+                            return Expanded(
+                              child: CupertinoListTile(
+                                  title :Text(displayValue(item)),
+                                  trailing : CupertinoCheckbox(
+                                    value: isSelected,
+                                    // title: Text(displayValue(item)),
+                                    onChanged: (bool? selected) {
+                                      if (isMultiSelect) {
+                                        final newSelectedValues = List<T>.from(
+                                            controller.selectedValues ?? []);
+                                        if (selected == true) {
+                                          newSelectedValues.add(item);
+                                        } else {
+                                          newSelectedValues.remove(item);
+                                        }
+                                        controller.updateSelectedValues(
+                                            newSelectedValues);
                                       } else {
-                                        newSelectedValues.remove(item);
+                                        controller.updateSelectedValue(item);
+                                        // Navigator.pop(context);
+                                        Get.back();
                                       }
-                                      controller.updateSelectedValues(
-                                          newSelectedValues);
-                                    } else {
-                                      controller.updateSelectedValue(item);
-                                      // Navigator.pop(context);
-                                      Get.back();
-                                    }
-                                    setState(() {}); // Update UI
-                                  },
-                                ),
-                              ],
+                                      setState(() {}); // Update UI
+                                    },
+                                  ),
+                              ),
                             );
                           }).toList(),
                         ),
