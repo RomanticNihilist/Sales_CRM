@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import '../../../../../components/generic_dropdown.dart';
 
 class LeadFormController extends GetxController {
+  // State management for UI elements
+  var isExpanded = false.obs;
+
+  void toggleExpanded() {
+    isExpanded.value = !isExpanded.value;
+  }
 
   GenericDropdownController<String> sectorDropdownController = GenericDropdownController<String>(
     displayValue: (item) => item,
@@ -16,6 +22,7 @@ class LeadFormController extends GetxController {
   GenericDropdownController<String> countryDropdownController = GenericDropdownController<String>(
     displayValue: (item) => item,
   );
+
   // Controllers for each input field
   TextEditingController organizationNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
