@@ -25,6 +25,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  chart_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: fca7a6d1c97dc30f9242155bcfcb6f18dd54d792
+      url: "https://github.com/RomanticNihilist/chart_package.git"
+    source: git
+    version: "0.0.1"
   clock:
     dependency: transitive
     description:
@@ -180,10 +189,10 @@ packages:
     dependency: transitive
     description:
       name: intl
-      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.2"
+    version: "0.19.0"
   js:
     dependency: transitive
     description:
@@ -313,26 +322,34 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_calendar
-      sha256: "11b01bc7ad1d240d7c644081bda79e61c0a8d26eec7eba67bfc7274310562897"
+      sha256: "20118a598cf5ae5b7ec84fa364e2b51070800f078466158fcd25864e1b5a2cfd"
       url: "https://pub.dev"
     source: hosted
-    version: "28.2.11"
+    version: "27.2.5"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: "6b05bd7eab479d033ee74e64dcbd9f879c65396e0963407bb1ac9e52af2b54b2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "27.2.5"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "59b6d2a7deacade6129d2f15615ca49ed56278fea055cd2e52cace78a343dd5e"
+      sha256: "325f519ce4ad8edd81811c21b853d72018529e353584490824da0555156ba076"
       url: "https://pub.dev"
     source: hosted
-    version: "28.2.11"
+    version: "27.2.5"
   syncfusion_flutter_datepicker:
     dependency: transitive
     description:
       name: syncfusion_flutter_datepicker
-      sha256: "7e598b8933d906ef7a3b8f47c59e942409f71c8e59e3d1b88e67acc9eea48817"
+      sha256: "2177e49eb8a1c0fce7081e40f5613c986d00e5e63cbeb98a6012f65ca156bfc7"
       url: "https://pub.dev"
     source: hosted
-    version: "28.2.11"
+    version: "27.2.5"
   term_glyph:
     dependency: transitive
     description:
@@ -353,10 +370,10 @@ packages:
     dependency: transitive
     description:
       name: timezone
-      sha256: ffc9d5f4d1193534ef051f9254063fa53d588609418c84299956c3db9383587d
+      sha256: "2236ec079a174ce07434e89fcd3fcda430025eb7692244139a9cf54fdcf1fc7d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.10.0"
+    version: "0.9.4"
   typed_data:
     dependency: transitive
     description:
