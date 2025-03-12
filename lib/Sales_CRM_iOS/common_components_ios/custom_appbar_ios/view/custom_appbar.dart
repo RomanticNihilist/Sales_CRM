@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/custom_appbar_ios/controller/custom_appbar_controller.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/contacts/screen/add_contact_ios.dart';
 
+import '../../../../Sales_CRM_android/views/contacts/forms/add_contact.dart';
 import '../../search_bar_ios/widget/search_bar_widget.dart';
 
 class CustomAppbar extends StatelessWidget
@@ -42,7 +44,41 @@ class CustomAppbar extends StatelessWidget
                 if (_customAppbarController.getAppBarTitle() != "Home")
                   CupertinoButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      if(_customAppbarController.getAppBarTitle() == "Contacts"){
+                          showCupertinoModalPopup(
+                            context: context,
+                            builder: (context) => CupertinoActionSheet(
+                              actions: [
+                                CupertinoActionSheetAction(
+                                  onPressed: () {
+                                    Get.back();
+                                    // Get.to(AddContactScreen());
+                                    showCupertinoModalPopup(context: context, builder: (BuildContext context){
+                                      return AddContactScreenios();
+                                    });
+                                  },
+                                  child: Text('Add Contact'),
+                                ),
+                                CupertinoActionSheetAction(
+                                  onPressed: () {
+                                    Get.back();
+                                   // calendarComponentContoller.changeView("Day");
+                                  },
+                                  child: Text('Import from Address Book'),
+                                ),
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                onPressed: () => Get.back(), //Navigator.pop(context),
+                                isDefaultAction: true,
+                                child: Text('Cancel'),
+                              ),
+                            ),
+                          );
+
+
+                      }
+                    },
                     child: Icon(CupertinoIcons.plus),
                   ),
                 if (_customAppbarController.getAppBarTitle() != "Home")

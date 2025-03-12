@@ -22,7 +22,7 @@ class ProfileSectionIos extends StatelessWidget {
           ),
           SizedBox(width: 12),
           Text(
-            "Madhurima Dey",
+            "Shouvik Misra",
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,

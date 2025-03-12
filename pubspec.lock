@@ -180,10 +180,10 @@ packages:
     dependency: transitive
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.20.2"
   js:
     dependency: transitive
     description:
@@ -313,26 +313,26 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_calendar
-      sha256: "31eb2bca4656dac4cd208b41ef0687e19b582272bc40414d7000384c1c9b5cae"
+      sha256: "11b01bc7ad1d240d7c644081bda79e61c0a8d26eec7eba67bfc7274310562897"
       url: "https://pub.dev"
     source: hosted
-    version: "21.2.10"
+    version: "28.2.11"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "8db8f55c77f56968681447d3837c10f27a9e861e238a898fda116c7531def979"
+      sha256: "59b6d2a7deacade6129d2f15615ca49ed56278fea055cd2e52cace78a343dd5e"
       url: "https://pub.dev"
     source: hosted
-    version: "21.2.10"
+    version: "28.2.11"
   syncfusion_flutter_datepicker:
     dependency: transitive
     description:
       name: syncfusion_flutter_datepicker
-      sha256: "6b0dacfe2f968de2b9107e2dc24fcaa2499415ae655df8f0d3ad0356eb090213"
+      sha256: "7e598b8933d906ef7a3b8f47c59e942409f71c8e59e3d1b88e67acc9eea48817"
       url: "https://pub.dev"
     source: hosted
-    version: "21.2.10"
+    version: "28.2.11"
   term_glyph:
     dependency: transitive
     description:
@@ -353,10 +353,10 @@ packages:
     dependency: transitive
     description:
       name: timezone
-      sha256: "1cfd8ddc2d1cfd836bc93e67b9be88c3adaeca6f40a00ca999104c30693cdca0"
+      sha256: ffc9d5f4d1193534ef051f9254063fa53d588609418c84299956c3db9383587d
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2"
+    version: "0.10.0"
   typed_data:
     dependency: transitive
     description:
@@ -385,10 +385,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: cd3543bd5798f6ad290ea73d210f423502e71900302dde696f8bff84bf89a1cb
+      sha256: "868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   zoom_tap_animation:
     dependency: "direct main"
     description:
