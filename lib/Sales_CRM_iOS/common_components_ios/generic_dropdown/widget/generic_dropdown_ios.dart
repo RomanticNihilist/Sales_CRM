@@ -88,6 +88,7 @@ class GenericDropdownIos<T> extends StatelessWidget {
                 labelText!,
                 style: theme.textTheme.actionSmallTextStyle,
               ),
+              SizedBox(width: 4.0),
               if (isMandatory) AppStyles.redAsterisk(),
             ],
           ),
