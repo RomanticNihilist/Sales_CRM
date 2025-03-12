@@ -130,6 +130,7 @@ class MoreBottomAppBarItem extends StatelessWidget {
                         _buildMenuItem(Icons.account_circle, "Account", 4, context),
                         _buildMenuItem(Icons.handshake, "Deals", 5, context),
                         _buildMenuItem(Icons.task, "Task", 6, context),
+                        _buildMenuItem(Icons.add_chart, "Summary", 7, context)
                       ],
                     ),
                   ),
