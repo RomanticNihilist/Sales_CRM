@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/components/custom_input.dart';
-import 'package:sale_crm/components/generic_dropdown.dart';
+import '../../../../../components/generic_dropdown_component/UI/generic_dropdown.dart';
 import '../forms_controller/add_lead_form_controller.dart';
 
 class AddLeadFormScreen extends StatelessWidget {
@@ -9,24 +9,30 @@ class AddLeadFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LeadFormController()); // GetX controller instance
-
-    // Example lists for the dropdowns (can be fetched from an API or database)
+    final controller = Get.put(LeadFormController());
     final sectors = ['Technology', 'Finance', 'Healthcare', 'Education'];
     final sources = ['Web', 'Referral', 'Ad Campaign', 'Direct'];
     final countries = ['USA', 'Canada', 'India', 'Germany'];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Lead'),
-        backgroundColor: Colors.blueAccent,
+        title: const Text(
+          'Add Lead',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blueAccent, Colors.lightBlue],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.check),
-            onPressed: () {
-              // Save logic or validation
-              controller.saveLead();
-            },
+            icon: const Icon(Icons.check, size: 28),
+            onPressed: controller.saveLead,
           ),
         ],
       ),
@@ -36,132 +42,107 @@ class AddLeadFormScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header: Lead Information
-              Text(
-                'LEAD INFORMATION',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
+              _buildHeader('LEAD INFORMATION'),
+              _buildCard([
+                _buildSectionHeader('Contact Information'),
+                CustomInput(
+                  labelText: 'Organization Name',
+                  isMandatory: true,
+                  controller: controller.organizationNameController,
+                  prefixIcon: const Icon(Icons.business),
                 ),
-              ),
-              SizedBox(height: 20),
-
-              // Contact Information Section
-              _buildSectionHeader('Contact Information'),
-              CustomInput(
-                labelText: 'Organization Name',
-                isMandatory: true,
-                controller: controller.organizationNameController,
-                prefixIcon: Icon(Icons.business),
-              ),
-              SizedBox(height: 16),
-              CustomInput(
-                labelText: 'Email',
-                controller: controller.emailController,
-                inputType: InputType.text,
-                prefixIcon: Icon(Icons.email),
-              ),
-              SizedBox(height: 16),
-              CustomInput(
-                labelText: 'Contact Number',
-                controller: controller.contactNumberController,
-                inputType: InputType.number,
-                prefixIcon: Icon(Icons.phone),
-              ),
-              SizedBox(height: 16),
-              CustomInput(
-                labelText: 'Number of Employees',
-                controller: controller.numberOfEmployeesController,
-                inputType: InputType.number,
-                prefixIcon: Icon(Icons.group),
-              ),
-              SizedBox(height: 16),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'Email',
+                  controller: controller.emailController,
+                  inputType: InputType.text,
+                  prefixIcon: const Icon(Icons.email),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'Contact Number',
+                  controller: controller.contactNumberController,
+                  inputType: InputType.number,
+                  prefixIcon: const Icon(Icons.phone),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'Number of Employees',
+                  controller: controller.numberOfEmployeesController,
+                  inputType: InputType.number,
+                  prefixIcon: const Icon(Icons.group),
+                ),
+              ]),
 
               Obx(() => controller.isExpanded.value
-                  ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Sector Dropdown
-                  GenericDropdown<String>(
-                    labelText: 'Sector',
-                    isMandatory: true,
-                    items: sectors,
-                    displayValue: (item) => item,
-                    controller: controller.sectorDropdownController,
-                    prefixIcon: Icon(Icons.business_center),
-                  ),
-                  SizedBox(height: 16),
-
-                  // Source Dropdown
-                  GenericDropdown<String>(
-                    labelText: 'Source',
-                    items: sources,
-                    displayValue: (item) => item,
-                    controller: controller.sourceDropdownController,
-                    prefixIcon: Icon(Icons.source),
-                  ),
-                  SizedBox(height: 16),
-
-                  // Website Field
-                  CustomInput(
-                    labelText: 'Website',
-                    controller: controller.websiteController,
-                    prefixIcon: Icon(Icons.web),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Address Section
-                  _buildSectionHeader('Address'),
-                  CustomInput(
-                    labelText: 'Street',
-                    controller: controller.streetController,
-                    prefixIcon: Icon(Icons.location_on),
-                  ),
-                  SizedBox(height: 16),
-                  CustomInput(
-                    labelText: 'City',
-                    controller: controller.cityController,
-                    prefixIcon: Icon(Icons.location_city),
-                  ),
-                  SizedBox(height: 16),
-                  CustomInput(
-                    labelText: 'State',
-                    controller: controller.stateController,
-                    prefixIcon: Icon(Icons.location_on),
-                  ),
-                  SizedBox(height: 16),
-                  CustomInput(
-                    labelText: 'ZIP/Postal Code',
-                    controller: controller.zipCodeController,
-                    prefixIcon: Icon(Icons.pin_drop),
-                  ),
-                  SizedBox(height: 16),
-                  // Country Dropdown
-                  GenericDropdown<String>(
-                    labelText: 'Country',
-                    items: countries,
-                    displayValue: (item) => item,
-                    controller: controller.countryDropdownController,
-                    prefixIcon: Icon(Icons.flag),
-                  ),
-                  SizedBox(height: 16),
-                ],
-              )
+                  ? _buildCard([
+                GenericDropdown<String>(
+                  labelText: 'Sector',
+                  isMandatory: true,
+                  items: sectors,
+                  displayValue: (item) => item,
+                  controller: controller.sectorDropdownController,
+                  prefixIcon: const Icon(Icons.business_center),
+                ),
+                const SizedBox(height: 16),
+                GenericDropdown<String>(
+                  labelText: 'Source',
+                  items: sources,
+                  displayValue: (item) => item,
+                  controller: controller.sourceDropdownController,
+                  prefixIcon: const Icon(Icons.source),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'Website',
+                  controller: controller.websiteController,
+                  prefixIcon: const Icon(Icons.web),
+                ),
+                const SizedBox(height: 20),
+                _buildSectionHeader('Address'),
+                CustomInput(
+                  labelText: 'Street',
+                  controller: controller.streetController,
+                  prefixIcon: const Icon(Icons.location_on),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'City',
+                  controller: controller.cityController,
+                  prefixIcon: const Icon(Icons.location_city),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'State',
+                  controller: controller.stateController,
+                  prefixIcon: const Icon(Icons.location_on),
+                ),
+                const SizedBox(height: 16),
+                CustomInput(
+                  labelText: 'ZIP/Postal Code',
+                  controller: controller.zipCodeController,
+                  prefixIcon: const Icon(Icons.pin_drop),
+                ),
+                const SizedBox(height: 16),
+                GenericDropdown<String>(
+                  labelText: 'Country',
+                  items: countries,
+                  displayValue: (item) => item,
+                  controller: controller.countryDropdownController,
+                  prefixIcon: const Icon(Icons.flag),
+                ),
+              ])
                   : Container()),
 
-              // Toggle "Show all fields" functionality
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: GestureDetector(
-                  onTap: () {
-                    controller.toggleExpanded();
-                  },
+                  onTap: controller.toggleExpanded,
                   child: Obx(() => Text(
                     controller.isExpanded.value
                         ? 'Switch to Smart View'
                         : 'Show all fields',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.blueAccent,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -169,7 +150,7 @@ class AddLeadFormScreen extends StatelessWidget {
                   )),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -177,7 +158,20 @@ class AddLeadFormScreen extends StatelessWidget {
     );
   }
 
-  // Helper method to build section headers
+  Widget _buildHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.blueAccent,
+        ),
+      ),
+    );
+  }
+
   Widget _buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -187,6 +181,22 @@ class AddLeadFormScreen extends StatelessWidget {
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.grey[800],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCard(List<Widget> children) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children,
         ),
       ),
     );
