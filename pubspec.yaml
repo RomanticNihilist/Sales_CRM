@@ -47,7 +47,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   syncfusion_flutter_charts:
   multi_dropdown: ^3.0.1
-  intl: ^0.20.2
+  intl: 
 
 dev_dependencies:
   flutter_test:
