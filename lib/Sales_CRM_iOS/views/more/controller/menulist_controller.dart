@@ -8,7 +8,8 @@ class MenulistController extends GetxController {
     "Contacts",
     "Accounts",
     "Deals",
-    "Billing"
+    "Billing",
+    "Summary"
   ];
   final List<IconData> pageIcons = [
     CupertinoIcons.home,
@@ -17,9 +18,10 @@ class MenulistController extends GetxController {
     CupertinoIcons.building_2_fill,
     CupertinoIcons.money_dollar_circle,
     CupertinoIcons.check_mark,
+    CupertinoIcons.chart_pie,
   ];
   var searchResult =
-      ["Home", "Leads", "Contacts", "Accounts", "Deals", "Billing"].obs;
+      ["Home", "Leads", "Contacts", "Accounts", "Deals", "Billing","Summary"].obs;
 
   var searchResultIcons = [
     CupertinoIcons.home,
@@ -28,6 +30,7 @@ class MenulistController extends GetxController {
     CupertinoIcons.building_2_fill,
     CupertinoIcons.money_dollar_circle,
     CupertinoIcons.check_mark,
+    CupertinoIcons.chart_pie,
   ].obs;
 
   var searchController = TextEditingController().obs;

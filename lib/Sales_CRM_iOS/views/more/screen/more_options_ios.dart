@@ -34,7 +34,7 @@ class MoreOptionsIos extends StatelessWidget {
       CupertinoIcons.person_2,
       CupertinoIcons.building_2_fill,
       CupertinoIcons.money_dollar_circle,
-      CupertinoIcons.check_mark,
+      CupertinoIcons.check_mark
     ];
 
     return GestureDetector(
@@ -42,9 +42,10 @@ class MoreOptionsIos extends StatelessWidget {
         showCupertinoModalPopup<void>(
           context: context,
           builder: (BuildContext context) => BottomModalIos(
-            containerHeight: 780.0,
+            // containerHeight: 780.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 //Close Button Section
                 CupertinoButton(
@@ -100,9 +101,11 @@ class MoreOptionsIos extends StatelessWidget {
                   () => Expanded(
                     child: CupertinoScrollbar(
                       child: Container(
+                        height: 500.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(40.0)),
                         child: ListView(
+                          scrollDirection: Axis.vertical,
                           padding: EdgeInsets.fromLTRB(18.0, 0, 18.0, 0),
                           children: List.generate(
                               _menulistController.searchResult.length, (index) {
