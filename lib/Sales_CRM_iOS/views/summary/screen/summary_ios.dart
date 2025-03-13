@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:chart_package/chart_package.dart';
-import 'package:sale_crm/Sales_CRM_android/common_components/custom_card_view/screen/custom_card_view.dart';
-import '../../../../data/deals_conversion_ratio_data/converted_deals_conversion_ratio_data.dart';
-import '../../../../data/deals_conversion_ratio_data/deals_conversion_ratio_data.dart';
-import '../../../../data/products_by_product_name/converted_products_by_product_name_data.dart';
-import '../../../../data/products_by_product_name/products_by_product_name.dart';
-import '../../../../data/quater_wise_revenue_data/converted_quarter_wise_revenue_data.dart';
-import '../../../../data/quater_wise_revenue_data/quarter_wise_revenue_data.dart';
-import '../../../../data/sector_wise_deal_data/converted_sector_wise_deal_data.dart';
-import '../../../../data/sector_wise_revenue_data/converted_sector_wise_revenue_data.dart';
-import '../../../../data/sector_wise_revenue_data/sector_wise_revenue_data.dart';
+import '../../../../data/chart_data/deals_conversion_ratio_data/converted_deals_conversion_ratio_data.dart';
+import '../../../../data/chart_data/deals_conversion_ratio_data/deals_conversion_ratio_data.dart';
+import '../../../../data/chart_data/products_by_product_name/converted_products_by_product_name_data.dart';
+import '../../../../data/chart_data/products_by_product_name/products_by_product_name.dart';
+import '../../../../data/chart_data/quater_wise_revenue_data/converted_quarter_wise_revenue_data.dart';
+import '../../../../data/chart_data/quater_wise_revenue_data/quarter_wise_revenue_data.dart';
+import '../../../../data/chart_data/sector_wise_deal_data/converted_sector_wise_deal_data.dart';
+import '../../../../data/chart_data/sector_wise_revenue_data/converted_sector_wise_revenue_data.dart';
+import '../../../../data/chart_data/sector_wise_revenue_data/sector_wise_revenue_data.dart';
 import '../../../common_components_ios/custom_card_view_ios/custom_card_view_ios.dart';
 
 class SummaryIos extends StatelessWidget {
