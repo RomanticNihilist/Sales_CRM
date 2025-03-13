@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../components/custom_input.dart';
-import '../../../../../components/generic_dropdown.dart';
+import '../../../../../components/generic_dropdown_component/UI/generic_dropdown.dart';
+import '../../../../../components/generic_dropdown_component/controller/generic_dropdown_controller.dart';
 import '../../../../../services/api_service.dart';
 //   Import the controller file
 //
