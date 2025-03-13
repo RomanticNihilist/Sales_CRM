@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../components/generic_dropdown.dart';
+import '../../../../../components/generic_dropdown_component/controller/generic_dropdown_controller.dart';
 
 class LeadFormController extends GetxController {
   // State management for UI elements
@@ -39,18 +40,17 @@ class LeadFormController extends GetxController {
 
   // Method to save the contact information (logic can be added here)
   void saveLead() {
-    // You can validate the fields and save the contact information
-    print('Organization Name: ${organizationNameController.text}');
-    print('Email: ${emailController.text}');
-    print('Contact Number: ${contactNumberController.text}');
-    print('Number of Employees: ${numberOfEmployeesController.text}');
-    print('Sector: ${sectorController.text}');
-    print('Source: ${sourceController.text}');
-    print('Website: ${websiteController.text}');
-    print('Street: ${streetController.text}');
-    print('City: ${cityController.text}');
-    print('State: ${stateController.text}');
-    print('ZIP/Postal Code: ${zipCodeController.text}');
-    print('Country: ${countryController.text}');
+    if (kDebugMode) {
+      print('Organization Name: ${organizationNameController.text}');
+      print('Number of Employees: ${numberOfEmployeesController.text}');
+      print('Sector: ${sectorController.text}');
+      print('Source: ${sourceController.text}');
+      print('Website: ${websiteController.text}');
+      print('Street: ${streetController.text}');
+      print('City: ${cityController.text}');
+      print('State: ${stateController.text}');
+      print('ZIP/Postal Code: ${zipCodeController.text}');
+      print('Country: ${countryController.text}');
+    }
   }
 }
