@@ -1,25 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:sale_crm/authentication/UI_utils_ios.dart';
-import '../Controllers/auth_controller.dart';
+import 'package:sale_crm/Controllers/auth_controller.dart';
 import '../Controllers/language_controller.dart';
+import '../components/custom_input.dart';
 import 'UI_utils_ios.dart';
 
-class LoginPageIos extends StatelessWidget {
+class ForgotPasswordIos extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   final AuthController authController = Get.put(AuthController());
   final LanguageController languageController = Get.put(LanguageController());
   final Map<String, String> languageFlags = {
-    'EN': '🇺🇸', // English - USA flag
-    'FR': '🇫🇷', // French - France flag
-    'DE': '🇩🇪', // German - Germany flag
-    'ES': '🇪🇸', // Spanish - Spain flag
+    'EN': '🇺🇸',
+    'FR': '🇫🇷',
+    'DE': '🇩🇪',
+    'ES': '🇪🇸',
   };
-
-
-  LoginPageIos({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class LoginPageIos extends StatelessWidget {
                     buildLanguageDropdownIos(languageController, languageFlags),
                     buildTaglineIos(),
                     SizedBox(height: 20),
-                    buildLoginFormIos(context, _formKey, usernameController, passwordController, authController),
+                    buildResetPasswordFormIos(context, _formKey, usernameController, authController),
                     buildFooterIos(),
                   ],
                 ),
@@ -49,5 +45,4 @@ class LoginPageIos extends StatelessWidget {
       ),
     );
   }
-
 }
