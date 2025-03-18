@@ -20,7 +20,8 @@ void handleLogin(BuildContext context, GlobalKey<FormState> formKey, TextEditing
     authController.login(usernameController.text, passwordController.text);
   } else {
     Get.snackbar("Error", "Username and Password cannot be empty",
-        snackPosition: SnackPosition.TOP, colorText: Colors.white);
+        snackPosition: SnackPosition.TOP, colorText: Colors.white
+    );
   }
 }
 
