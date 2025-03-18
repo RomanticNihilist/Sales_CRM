@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/bottom_modal_ios/widget/bottom_modal_ios.dart';
-import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/generic_dropdown/widget/generic_dropdown_ios.dart';
-import 'package:sale_crm/components/custom_input_IOS.dart';
-
-import '../../../../../services/api_service.dart';
+import '../../../../../components/custom_input_IOS.dart';
+import '../../../../common_components_ios/bottom_modal_ios/widget/bottom_modal_ios.dart';
+import '../../../../common_components_ios/generic_dropdown/widget/generic_dropdown_ios.dart';
 import '../form_controller/event_form_ios_controller.dart';
 
 class EventFormIos extends StatelessWidget {
-  
+
   final EventFormIosController _eventFormIosController = Get.put(EventFormIosController());
 
   EventFormIos({super.key});
@@ -94,7 +92,7 @@ class EventFormIos extends StatelessWidget {
                     hintText: 'Enter meeting link',
                     controller: _eventFormIosController.meetingLinkController,
                     prefixIcon:
-                        Icon(CupertinoIcons.link, color: theme.primaryColor),
+                    Icon(CupertinoIcons.link, color: theme.primaryColor),
                   ),
                   SizedBox(height: 16.0),
                   CustomInputIOS(
@@ -178,7 +176,7 @@ class EventFormIos extends StatelessWidget {
                     displayValue: (item) => item,
                     controller: _eventFormIosController.remindBeforeController,
                     prefixIcon:
-                        Icon(CupertinoIcons.alarm, color: theme.primaryColor),
+                    Icon(CupertinoIcons.alarm, color: theme.primaryColor),
                   ),
                   SizedBox(height: 16.0),
                   CustomInputIOS(
