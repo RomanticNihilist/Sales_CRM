@@ -4,25 +4,25 @@ import 'package:sale_crm/Sales_CRM_android/views/calender/screen/calender_screen
 import 'package:sale_crm/Sales_CRM_android/views/home/screen/home_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/summary/screen/summary_screen.dart';
 import '../../views/contacts/screen/contact_screen.dart';
-import '../../views/leads/screen/lead_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/account/screen/account_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/screen/deals_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/task/screen/task_screen.dart';
+
+import '../../views/leads/all_leads_screen/screen/lead_screen.dart';
 
 class SalesCrmEntryPointAndroidController extends GetxController {
   late PageController pageController;
   RxInt currentPage = 0.obs;
 
   List<Widget> pages = [
-    CalendarScreen(),  // index 0
-    HomeScreen(),      // index 1
-    LeadScreen(),      // index 2
-    ContactScreen(),   // index 3
-    // ProfileScreen(),   // index 4
-    AccountScreen(),   // index 5 (More option)
-    DealsScreen(),     // index 6 (More option)
+    CalendarScreen(),
+    HomeScreen(),
+    LeadScreen(),
+    ContactScreen(),
+    AccountScreen(),
+    DealsScreen(),
     TaskScreen(),
-    // SummaryScreen()// index 7 (More option)
+    SummaryScreen()
   ];
 
   void goToTab(int page) {
