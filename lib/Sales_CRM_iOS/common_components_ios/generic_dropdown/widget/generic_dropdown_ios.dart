@@ -2,50 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import '../../../../style/app_styles.dart';
+import '../controller/generic_dropdown_contoller_ios.dart';
 
-class GenericDropdownControllerIos<T> extends ChangeNotifier {
-  T? selectedValue; // For single selection
-  List<T>? selectedValues; // For multiple selection
-  String searchText = ''; // Search text
-  final TextEditingController textController = TextEditingController();
-
-  final String Function(T)? displayValue;
-
-  GenericDropdownControllerIos({
-    this.selectedValue,
-    this.selectedValues,
-    required this.displayValue,
-  }) {
-    _updateText();
-  }
-
-  void updateSearchText(String text) {
-    searchText = text;
-    notifyListeners();
-  }
-
-  void updateSelectedValue(T? value) {
-    selectedValue = value;
-    _updateText();
-    notifyListeners();
-  }
-
-  void updateSelectedValues(List<T> values) {
-    selectedValues = values;
-    _updateText();
-    notifyListeners();
-  }
-
-  void _updateText() {
-    if (selectedValue != null && displayValue != null) {
-      textController.text = displayValue!(selectedValue!);
-    } else if (selectedValues != null && displayValue != null) {
-      textController.text = selectedValues!.map(displayValue!).join(', ');
-    } else {
-      textController.text = '';
-    }
-  }
-}
 
 class GenericDropdownIos<T> extends StatelessWidget {
   final String? labelText;

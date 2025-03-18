@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 
 class CustomCardViewIos extends StatelessWidget {
   final Widget widget;
-  const CustomCardViewIos ({super.key, required this.widget});
+  final double height;
+  final EdgeInsets padding;
+  const CustomCardViewIos ({super.key, required this.widget, this.height = 300, this.padding = const EdgeInsets.all(16.0)});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(8.0),
       width: double.infinity,
-      height: 300, // Adjust the height as needed
+      height: height, // Adjust the height as needed
       decoration: BoxDecoration(
         color: CupertinoColors.white,
         borderRadius: BorderRadius.circular(12),
@@ -20,7 +23,7 @@ class CustomCardViewIos extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(16.0),
+      padding: padding,
       child: widget,
     );
   }

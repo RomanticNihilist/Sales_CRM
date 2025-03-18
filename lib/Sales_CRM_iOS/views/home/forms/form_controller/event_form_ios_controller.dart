@@ -5,7 +5,7 @@ import 'package:sale_crm/Sales_CRM_iOS/views/home/controller/calendar_component_
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../../../../services/api_service.dart';
-import '../../../../common_components_ios/generic_dropdown/widget/generic_dropdown_ios.dart';
+import '../../../../common_components_ios/generic_dropdown/controller/generic_dropdown_contoller_ios.dart';
 
 class EventFormIosController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/generic_dropdown/widget/generic_dropdown_ios.dart';
+
+import '../../../../common_components_ios/generic_dropdown/controller/generic_dropdown_contoller_ios.dart';
 
 class AddLeadFormControllerIos extends GetxController {
   GenericDropdownControllerIos<String> sectorDropdownController =
