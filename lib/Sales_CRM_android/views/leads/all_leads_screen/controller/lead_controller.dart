@@ -15,14 +15,12 @@ class LeadController extends GetxController {
     sortLeads();
   }
 
-  /// Sort leads based on the selected attribute.
   void sortLeads() {
     if (sortBy.value == 'organisationName') {
       leadsList.sort((a, b) => a.organisationName.compareTo(b.organisationName));
     } else if (sortBy.value == 'leadStatus') {
       leadsList.sort((a, b) => a.leadStatus.compareTo(b.leadStatus));
     } else if (sortBy.value == 'updatedOn') {
-      // Sort by updated date descending so latest is on top.
       leadsList.sort((a, b) => b.updatedOn.compareTo(a.updatedOn));
     }
   }
