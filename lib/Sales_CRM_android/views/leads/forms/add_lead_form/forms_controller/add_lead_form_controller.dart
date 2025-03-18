@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../components/generic_dropdown_component/controller/generic_dropdown_controller.dart';
+import '../../../../../../components/generic_dropdown_component/controller/generic_dropdown_controller.dart';
 
 class LeadFormController extends GetxController {
   // State management for UI elements

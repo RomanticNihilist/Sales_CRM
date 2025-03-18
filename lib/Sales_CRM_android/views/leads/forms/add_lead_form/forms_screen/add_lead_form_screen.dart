@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/components/custom_input.dart';
-import '../../../../../components/generic_dropdown_component/UI/generic_dropdown.dart';
+// import '../../../../../components/generic_dropdown_component/UI/generic_dropdown.dart';
+import '../../../../../../components/generic_dropdown_component/UI/generic_dropdown.dart';
 import '../forms_controller/add_lead_form_controller.dart';
 
 class AddLeadFormScreen extends StatelessWidget {

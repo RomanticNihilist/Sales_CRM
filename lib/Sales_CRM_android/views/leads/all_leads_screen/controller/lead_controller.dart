@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:sale_crm/data/lead_data/all_lead_data.dart';
 
-import '../../../../data/lead_data/converted_all_lead_data.dart';
+import '../../../../../data/lead_data/converted_all_lead_data.dart';
+
 
 class LeadController extends GetxController {
   var leadsList = <Lead>[].obs;
@@ -10,12 +11,6 @@ class LeadController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Here, you could load your leads data.
-    // For example, if you already have your raw list, parse it into Lead objects.
-    // Example:
-    // leadsList.assignAll(yourRawLeads.map((lead) => Lead.fromJson(lead)).toList());
-    // For demonstration, I'll add dummy data:
-
     leadsList.assignAll(allLeadData.map((lead) => Lead.fromJson(lead)).toList());
     sortLeads();
   }
