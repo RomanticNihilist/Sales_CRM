@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/authentication/forgot_password_ios.dart';
 import 'package:sale_crm/components/custom_input_IOS.dart';
 import '../Controllers/auth_controller.dart';
 import '../Controllers/language_controller.dart';
@@ -37,7 +38,6 @@ Widget buildLanguageDropdownIos(
   );
 }
 
-
 Widget buildDropdownIos(
     LanguageController languageController, Map<String, String> languageFlags) {
   // return Container(
@@ -69,8 +69,8 @@ Widget buildDropdownIos(
     width: 200, // Set a fixed width for the picker
     child: CupertinoPicker(
       scrollController: FixedExtentScrollController(
-        initialItem: languageController.languages.indexOf(
-            languageController.selectedLanguage.value),
+        initialItem: languageController.languages
+            .indexOf(languageController.selectedLanguage.value),
       ),
       itemExtent: 32.0,
       onSelectedItemChanged: (int index) {
@@ -151,7 +151,6 @@ Widget buildDropdownIos(
 //   );
 // }
 
-
 Widget buildTaglineIos() {
   return const Padding(
     padding: EdgeInsets.symmetric(vertical: 20),
@@ -215,8 +214,57 @@ Widget buildFooterIos() {
     ],
   );
 }
+//By shouvik
+Widget buildResetPasswordFormIos(
+    BuildContext context,
+    GlobalKey<FormState> formKey,
+    TextEditingController usernameController,
+    AuthController authController) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    child: Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: CupertinoColors.white.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: CupertinoColors.transparent,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset('assets/ikon-logo.png', height: 40),
+            const SizedBox(height: 10),
+            const Text(
+              'Harness the Power of Data',
+              style: TextStyle(color: CupertinoColors.black, fontSize: 14),
+            ),
+            const SizedBox(height: 20),
+            CustomInputIOS(
+              controller: usernameController,
+              labelText: 'Username',
+              hintText: 'Enter your username',
+              isMandatory: true,
+              prefixIcon: const Icon(CupertinoIcons.person),
+            ),
+            const SizedBox(height: 20),
+            buildGenerateNewPasswordButtonIos(context,authController,formKey,usernameController),
+            const SizedBox(height: 10),
+            buildResetButtonIos(usernameController),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
-// Forgot Password Section
 Widget buildResetButtonIos(TextEditingController usernameController) {
   return SizedBox(
     width: double.infinity,
@@ -225,13 +273,27 @@ Widget buildResetButtonIos(TextEditingController usernameController) {
       onPressed: () {
         usernameController.clear();
       },
-      child: const Text('Reset', style: TextStyle(fontSize: 16)),
+      child: const Text('Reset Password', style: TextStyle(fontSize: 16)),
     ),
   );
 }
+///////////////////////Not required now
+// Forgot Password Section
+// Widget buildResetButtonIos(TextEditingController usernameController) {
+//   return SizedBox(
+//     width: double.infinity,
+//     height: 48,
+//     child: CupertinoButton.filled(
+//       onPressed: () {
+//         usernameController.clear();
+//       },
+//       child: const Text('Reset', style: TextStyle(fontSize: 16)),
+//     ),
+//   );
+// }
 
-Widget buildGenerateNewPasswordButtonIos(BuildContext context,
-    AuthController authController, GlobalKey<FormState> formKey, TextEditingController usernameController) {
+Widget buildGenerateNewPasswordButtonIos(BuildContext context, AuthController authController, GlobalKey<FormState> formKey,
+    TextEditingController usernameController) {
   return Obx(() {
     return authController.isLoading.value
         ? const CupertinoActivityIndicator()
@@ -240,37 +302,47 @@ Widget buildGenerateNewPasswordButtonIos(BuildContext context,
             height: 48,
             child: CupertinoButton.filled(
               onPressed: () {
-                handleResetPasswordIos(formKey, usernameController, authController);
+                handleResetPasswordIos(
+                    formKey, usernameController, authController);
               },
-              child: const Text('Generate New Password', style: TextStyle(fontSize: 16)),
+              child: const Text('Generate New Password',
+                  style: TextStyle(fontSize: 16)),
             ),
           );
   });
 }
-
-Widget buildResetPasswordFormIos(BuildContext context, GlobalKey<FormState> formKey,
-    TextEditingController usernameController, AuthController authController) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-    child: CupertinoFormSection.insetGrouped(
-      children: [
-        CustomInputIOS(
-          controller: usernameController,
-          labelText: 'Username',
-          hintText: 'Enter your username',
-          isMandatory: true,
-          prefixIcon: const Icon(CupertinoIcons.person),
-        ),
-        buildGenerateNewPasswordButtonIos(context, authController, formKey, usernameController),
-        buildResetButtonIos(usernameController),
-      ],
-    ),
-  );
-}
+///// not required now
+// Widget buildResetPasswordFormIos(
+//     BuildContext context,
+//     GlobalKey<FormState> formKey,
+//     TextEditingController usernameController,
+//     AuthController authController) {
+//   return Padding(
+//     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+//     child: CupertinoFormSection.insetGrouped(
+//       children: [
+//         CustomInputIOS(
+//           controller: usernameController,
+//           labelText: 'Username',
+//           hintText: 'Enter your username',
+//           isMandatory: true,
+//           prefixIcon: const Icon(CupertinoIcons.person),
+//         ),
+//         buildGenerateNewPasswordButtonIos(
+//             context, authController, formKey, usernameController),
+//         buildResetButtonIos(usernameController),
+//       ],
+//     ),
+//   );
+// }
 
 // Login Section
-Widget buildLoginFormIos(BuildContext context, GlobalKey<FormState> formKey,
-    TextEditingController usernameController, TextEditingController passwordController, AuthController authController) {
+Widget buildLoginFormIos(
+    BuildContext context,
+    GlobalKey<FormState> formKey,
+    TextEditingController usernameController,
+    TextEditingController passwordController,
+    AuthController authController) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     child: Container(
@@ -315,7 +387,8 @@ Widget buildLoginFormIos(BuildContext context, GlobalKey<FormState> formKey,
               inputType: InputType.password,
             ),
             buildForgotPasswordIos(),
-            buildLoginButtonIos(context, authController, usernameController, passwordController),
+            buildLoginButtonIos(context, authController, usernameController,
+                passwordController),
             const SizedBox(height: 10),
             buildResetButtonInLoginIos(usernameController, passwordController),
           ],
@@ -323,11 +396,10 @@ Widget buildLoginFormIos(BuildContext context, GlobalKey<FormState> formKey,
       ),
     ),
   );
-
-
 }
 
-Widget buildResetButtonInLoginIos(TextEditingController usernameController, TextEditingController passwordController) {
+Widget buildResetButtonInLoginIos(TextEditingController usernameController,
+    TextEditingController passwordController) {
   return SizedBox(
     width: double.infinity,
     height: 48,
@@ -347,14 +419,19 @@ Widget buildForgotPasswordIos() {
     child: CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: () {
-        Get.to(ForgotPassword());
+        Get.to(ForgotPasswordIos());
       },
-      child: const Text('Forgot Password?', style: TextStyle(color: CupertinoColors.activeBlue)),
+      child: const Text('Forgot Password?',
+          style: TextStyle(color: CupertinoColors.activeBlue)),
     ),
   );
 }
 
-Widget buildLoginButtonIos(BuildContext context, AuthController authController, TextEditingController usernameController, TextEditingController passwordController) {
+Widget buildLoginButtonIos(
+    BuildContext context,
+    AuthController authController,
+    TextEditingController usernameController,
+    TextEditingController passwordController) {
   return Obx(() {
     return authController.isLoading.value
         ? const CupertinoActivityIndicator()
@@ -363,12 +440,11 @@ Widget buildLoginButtonIos(BuildContext context, AuthController authController, 
             height: 48,
             child: CupertinoButton.filled(
               onPressed: () {
-                handleLoginIos(context, usernameController, passwordController,authController);
+                handleLoginIos(context, usernameController, passwordController,
+                    authController);
               },
               child: const Text('Login', style: TextStyle(fontSize: 16)),
             ),
           );
   });
 }
-
-
