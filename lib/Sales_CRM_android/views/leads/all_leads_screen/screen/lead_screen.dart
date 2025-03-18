@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/floating_action_button/view/floating_action_button.dart';
 import 'package:get/get.dart';
+import '../../lead_details/screen/lead_details_screen.dart';
 import '../controller/lead_controller.dart';
-import '../lead_details/screen/lead_details_screen.dart';
-
 class LeadScreen extends StatelessWidget {
   final LeadController leadController = Get.put(LeadController());
 
