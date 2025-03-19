@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sale_crm/Sales_CRM_android/common_components/floating_action_button/view/floating_action_button.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_android/common_components/floating_action_button/view/floating_action_button.dart';
 import '../../lead_details/screen/lead_details_screen.dart';
 import '../controller/lead_controller.dart';
-class LeadScreen extends StatelessWidget {
-  final LeadController leadController = Get.put(LeadController());
+import 'package:sale_crm/Sales_CRM_android/common_components/custom_search_bar/screen/search_bar_component.dart';
 
+class LeadScreen extends StatelessWidget{
+  final LeadController leadController = Get.put(LeadController());
+  final animatedBoxKey = GlobalKey();
   LeadScreen({super.key});
 
   @override
@@ -13,13 +15,13 @@ class LeadScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButtonComponent(),
       appBar: AppBar(
-        title: Text("All Leads"),
+        title: const Text("All Leads"),
         actions: [
           Obx(() {
             return Row(
               children: [
                 Icon(
-                  Icons.sort,
+                  Icons.sort_rounded,
                   color: Colors.black,
                 ),
                 SizedBox(width: 8),
@@ -56,26 +58,49 @@ class LeadScreen extends StatelessWidget {
               ],
             );
           }),
+
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              leadController.toggleSearchVisibility();
+            },
+          ),
         ],
       ),
       body: Obx(() {
-        return ListView.builder(
-          itemCount: leadController.leadsList.length,
-          itemBuilder: (context, index) {
-            final lead = leadController.leadsList[index];
-            return Card(
-              child: ListTile(
-                title: Text(lead.organisationName),
-                subtitle: Text("Status: ${lead.leadStatus}"),
-                trailing: Text(
-                  "${lead.updatedOn.day}/${lead.updatedOn.month}/${lead.updatedOn.year}",
-                ),
-                onTap: () {
-                  Get.to(() => LeadDetailPage(lead: lead));
+        return Column(
+          children: [
+            if (leadController.isSearchVisible.value)
+              SizeTransition(
+                sizeFactor: leadController.animation,
+                axisAlignment: -1.0,
+                child: leadController.isSearchVisible.value
+                    ? SearchBarComponent(
+                  onSearch: leadController.filterLeads,
+                )
+                    : SizedBox(),
+              ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: leadController.filteredLeadsList.length,
+                itemBuilder: (context, index) {
+                  final lead = leadController.filteredLeadsList[index];
+                  return Card(
+                    child: ListTile(
+                      title: Text(lead.organisationName),
+                      subtitle: Text("Status: ${lead.leadStatus}"),
+                      trailing: Text(
+                        "${lead.updatedOn.day}/${lead.updatedOn.month}/${lead.updatedOn.year}",
+                      ),
+                      onTap: () {
+                        Get.to(() => LeadDetailPage(lead: lead));
+                      },
+                    ),
+                  );
                 },
               ),
-            );
-          },
+            ),
+          ],
         );
       }),
     );

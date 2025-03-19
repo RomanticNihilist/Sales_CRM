@@ -174,7 +174,7 @@ class MoreBottomAppBarItem extends StatelessWidget {
         ),
         SizedBox(width: 12),
         Text(
-          "Madhurima Dey",
+          "Agniva Bhattacharjee",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ],
