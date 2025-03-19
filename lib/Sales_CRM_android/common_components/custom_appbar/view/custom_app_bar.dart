@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/app_bar_controller.dart';
 
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarController _appBarController = Get.put(AppBarController());
 
@@ -24,14 +23,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // Handle left icon action (e.g., drawer open)
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-              // Handle search action
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.search, color: Colors.white),
+        //     onPressed: () {
+        //       // Handle search action
+        //     },
+        //   ),
+        // ],
       );
     });
   }

@@ -93,7 +93,7 @@ class LeadScreen extends StatelessWidget{
                         "${lead.updatedOn.day}/${lead.updatedOn.month}/${lead.updatedOn.year}",
                       ),
                       onTap: () {
-                        Get.to(() => LeadDetailPage(lead: lead));
+                        Get.to(() => AllLeadDetails(lead: lead));
                       },
                     ),
                   );
