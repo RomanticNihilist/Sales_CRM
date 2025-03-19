@@ -3,12 +3,12 @@ import 'package:chart_package/chart_package.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/custom_card_view/screen/custom_card_view.dart';
 
 import '../../../../data/chart_data/deals_conversion_ratio_data/converted_deals_conversion_ratio_data.dart';
-import '../../../../data/chart_data/deals_conversion_ratio_data/deals_conversion_ratio_data.dart';
 import '../../../../data/chart_data/products_by_product_name/converted_products_by_product_name_data.dart';
 import '../../../../data/chart_data/products_by_product_name/products_by_product_name.dart';
 import '../../../../data/chart_data/quater_wise_revenue_data/converted_quarter_wise_revenue_data.dart';
 import '../../../../data/chart_data/quater_wise_revenue_data/quarter_wise_revenue_data.dart';
 import '../../../../data/chart_data/sector_wise_deal_data/converted_sector_wise_deal_data.dart';
+import '../../../../data/chart_data/sector_wise_deal_data/sector_wise_deal_data.dart';
 import '../../../../data/chart_data/sector_wise_revenue_data/converted_sector_wise_revenue_data.dart';
 import '../../../../data/chart_data/sector_wise_revenue_data/sector_wise_revenue_data.dart';
 
@@ -18,7 +18,7 @@ class SummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<SectorWiseDealData> sectorData = SectorDataUtils.getSectorWiseData();
-    final sectorChartData = SectorChartData.fromRawData(rawSectorData);
+    final dealConversionRatioData = DealConversionRatioData.fromRawData(rawSectorData);
     final productsByProductName = ProductByProductNameData.fromRawData(rawProductsByProductData);
     final quarterWiseRevenueData = QuarterWiseRevenueData.fromRawData(rawQuarterWiseRevenueData);
     final sectorWiseRevenueData = SectorWiseRevenueData.fromRawData(sectorWiseRevenue);
@@ -44,14 +44,15 @@ class SummaryScreen extends StatelessWidget {
                   ChartType.stackedColumnChart
                 ),
               ),
+              // CustomCardView(sectorMapping: sectorMapping),
               const Text(
                 'Deals Conversion Ratio', // Title for the chart
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               CustomCardView(
                 widget: ChartComponent(
-                    sectorChartData.xData,
-                    sectorChartData.yData,
+                    dealConversionRatioData.xData,
+                    dealConversionRatioData.yData,
                     true,
                     true,
                     ChartType.pie
@@ -95,7 +96,8 @@ class SummaryScreen extends StatelessWidget {
                   true,
                   ChartType.columnChart
                 ),
-              )
+              ),
+              const SizedBox(height: 100,)
             ],
           ),
         ),

@@ -1,4 +1,4 @@
-const List<Map<String, dynamic>> rawSectorData = [
+const List<Map<String, dynamic>> rawDealConversionRateData = [
   {
     "key": "Open",
     "color": "#5D90F9",

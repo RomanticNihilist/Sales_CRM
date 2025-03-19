@@ -38,7 +38,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: fca7a6d1c97dc30f9242155bcfcb6f18dd54d792
+      resolved-ref: b1a5154ea9c84a84643faf39cb2a3caa89fef00d
       url: "https://github.com/RomanticNihilist/chart_package.git"
     source: git
     version: "0.0.1"
