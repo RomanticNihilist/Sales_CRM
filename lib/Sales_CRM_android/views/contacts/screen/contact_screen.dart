@@ -21,7 +21,15 @@ class ContactScreen extends StatelessWidget{
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButtonComponent(),
+      floatingActionButton: Stack(
+          children: [
+            Positioned(
+                top: MediaQuery.of(context).size.height * 0.72,
+                right: MediaQuery.of(context).size.width * 0.01,
+                child: FloatingActionButtonComponent()
+            )
+          ]
+      ),
     );
   }
 }

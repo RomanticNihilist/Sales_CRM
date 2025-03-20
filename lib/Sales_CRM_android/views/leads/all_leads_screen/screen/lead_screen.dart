@@ -5,15 +5,24 @@ import '../../lead_details/screen/lead_details_screen.dart';
 import '../controller/lead_controller.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/custom_search_bar/screen/search_bar_component.dart';
 
-class LeadScreen extends StatelessWidget{
+class LeadScreen extends StatelessWidget {
   final LeadController leadController = Get.put(LeadController());
   final animatedBoxKey = GlobalKey();
+
   LeadScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButtonComponent(),
+      floatingActionButton: Stack(
+          children: [
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.72,
+              right: MediaQuery.of(context).size.width * 0.01,
+              child: FloatingActionButtonComponent()
+            )
+          ]
+      ),
       appBar: AppBar(
         title: const Text("All Leads"),
         actions: [
@@ -58,7 +67,6 @@ class LeadScreen extends StatelessWidget{
               ],
             );
           }),
-
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
@@ -76,8 +84,8 @@ class LeadScreen extends StatelessWidget{
                 axisAlignment: -1.0,
                 child: leadController.isSearchVisible.value
                     ? SearchBarComponent(
-                  onSearch: leadController.filterLeads,
-                )
+                        onSearch: leadController.filterLeads,
+                      )
                     : SizedBox(),
               ),
             Expanded(
