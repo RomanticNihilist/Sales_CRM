@@ -33,6 +33,7 @@ class EventFormIosController extends GetxController {
     "Monthly",
     "Yearly"
   ];
+  
   final List<String> remindBeforeDropDownValue = [
     "1 hour",
     "2 hours",

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sale_crm/services/api_service.dart';
 import 'package:sale_crm/splash_screen.dart';
 import 'authentication/login_ios.dart';
+import 'splash_screen_ios.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

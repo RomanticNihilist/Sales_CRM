@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_android/views/leads/all_leads_screen/screen/lead_screen.dart';
 import 'package:sale_crm/Sales_CRM_iOS/views/billing/screen/billing_ios.dart';
 import 'package:sale_crm/Sales_CRM_iOS/views/deals/screen/deals_ios.dart';
 import 'package:sale_crm/Sales_CRM_iOS/views/home/screen/home_ios.dart';
@@ -7,7 +8,7 @@ import 'package:sale_crm/Sales_CRM_iOS/views/summary/screen/summary_ios.dart';
 
 import '../../views/accounts/screen/accouts_ios.dart';
 import '../../views/contacts/screen/contacts_ios.dart';
-import '../../views/leads/screen/leads_ios.dart';
+import '../../views/leads/all_leads_screen_ios/screen/leads_ios.dart';
 
 class SalesCrmEntryPointIosController extends GetxController {
   late PageController pageController;
@@ -16,6 +17,7 @@ class SalesCrmEntryPointIosController extends GetxController {
   List<Widget> pages = [
     HomeIos(),
     LeadsIos(),
+    // LeadScreen(),
     ContactsIos(),
     AccountsIos(),
     DealsIos(),

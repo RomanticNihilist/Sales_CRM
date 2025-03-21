@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import '../../../../../data/lead_data/all_lead_data.dart';
 import '../../../../../data/lead_data/converted_all_lead_data.dart';
 
-class LeadController extends GetxController with GetSingleTickerProviderStateMixin{
+class LeadController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   var leadsList = <Lead>[].obs;
   var filteredLeadsList = <Lead>[].obs;
   var sortBy = 'updatedOn'.obs;
@@ -21,12 +22,13 @@ class LeadController extends GetxController with GetSingleTickerProviderStateMix
       vsync: this,
     );
 
-    animation = CurvedAnimation(parent: animationController, curve: Curves.easeInOut);
+    animation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeInOut);
 
-    leadsList.assignAll(allLeadData.map((lead) => Lead.fromJson(lead)).toList());
+    leadsList
+        .assignAll(allLeadData.map((lead) => Lead.fromJson(lead)).toList());
     filteredLeadsList.assignAll(leadsList);
     sortLeads();
-
 
     /// This code is not working, tried to fix it but it doesn't work, so I'm commenting it out for now
     /// The search bar is coming with the animation but not going reverse animationController.reverse() with the same animation.
@@ -39,20 +41,32 @@ class LeadController extends GetxController with GetSingleTickerProviderStateMix
     // });
   }
 
+  // void toggleSearchVisibility() {
+  //   if (isSearchVisible.value) {
+  //     animationController.reverse();
+  //   } else {
+  //     animationController.forward();
+  //   }
+  //   isSearchVisible.value = !isSearchVisible.value;
+  // }
+
   void toggleSearchVisibility() {
     if (isSearchVisible.value) {
-      animationController.reverse();
+      animationController.reverse().then((_) {
+        isSearchVisible.value = false;
+      });
     } else {
+      isSearchVisible.value = true;
       animationController.forward();
     }
-    isSearchVisible.value = !isSearchVisible.value;
   }
-
 
   void filterLeads(String query) {
     filteredLeadsList.assignAll(
       leadsList.where((lead) {
-        return lead.organisationName.toLowerCase().contains(query.toLowerCase()) ||
+        return lead.organisationName
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
             lead.leadStatus.toLowerCase().contains(query.toLowerCase()) ||
             lead.updatedOn.toString().contains(query);
       }).toList(),
@@ -62,7 +76,8 @@ class LeadController extends GetxController with GetSingleTickerProviderStateMix
 
   void sortLeads() {
     if (sortBy.value == 'organisationName') {
-      filteredLeadsList.sort((a, b) => a.organisationName.compareTo(b.organisationName));
+      filteredLeadsList
+          .sort((a, b) => a.organisationName.compareTo(b.organisationName));
     } else if (sortBy.value == 'leadStatus') {
       filteredLeadsList.sort((a, b) => a.leadStatus.compareTo(b.leadStatus));
     } else if (sortBy.value == 'updatedOn') {
