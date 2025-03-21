@@ -26,6 +26,10 @@ class DealsIos extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListViewScreenIos(
                   title: "Title",
+                  status: "Status",
+                  updatedOn: "Updated On",
+                  salesManager: "Sales Manager",
+                  onTap: () => print("Tapped"),
                 );
               },
             ),
