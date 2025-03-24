@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/deals/forms/screen/add_deal_form_ios.dart';
 
 import '../../custom_card_view_ios/custom_card_view_ios.dart';
 
@@ -57,6 +59,7 @@ class ListViewScreenIos extends StatelessWidget {
         ),
         trailing:
             CupertinoButton(child: Icon(CupertinoIcons.mail), onPressed: () {}),
+
       ),
     );
   }
