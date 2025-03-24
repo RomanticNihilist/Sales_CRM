@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../common_components_ios/list_view_for_screen/widget/list_view_screen_ios_.dart';
+import '../controller/deal_screen_controller.dart';
+import '../widget/deal_divider_ios.dart';
+import '../widget/deal_header_ios.dart';
 
 class DealsIos extends StatelessWidget {
-  const DealsIos({Key? key}) : super(key: key);
+  final AllDealsControllerIos _allDealsControllerIos =Get.put(AllDealsControllerIos());
+   DealsIos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +23,19 @@ class DealsIos extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Column(
           children: [
-            _buildHeader(),
-            _buildDivider(),
+            AllDealsHeaderIos(),
+            DealDividerIos(),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: 10,
+              itemCount: _allDealsControllerIos.dealsList.length,
               itemBuilder: (context, index) {
+                var deal = _allDealsControllerIos.dealsList[index];
+                String formattedDate = DateFormat('dd/MM/yyyy').format(deal.updatedOn);
                 return ListViewScreenIos(
-                  title: "Title",
-                  status: "Status",
-                  updatedOn: "Updated On",
-                  salesManager: "Sales Manager",
+                  title: deal.dealName,
+                  status: deal.dealStatus,
+                  updatedOn: formattedDate,
+                  salesManager: deal.createdBy,
                   onTap: () => print("Tapped"),
                 );
               },
