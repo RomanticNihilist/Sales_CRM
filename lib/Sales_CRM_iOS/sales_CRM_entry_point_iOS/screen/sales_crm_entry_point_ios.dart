@@ -7,6 +7,7 @@ import 'package:sale_crm/Sales_CRM_iOS/sales_CRM_entry_point_iOS/widget/bottom_a
 import 'package:sale_crm/Sales_CRM_iOS/views/more/screen/more_options_ios.dart';
 // import 'package:flutter/material.dart';
 
+import '../../../Sales_CRM_android/sales_crm_entry_point_android/controller/sales_crm_entry_point_android_controller.dart';
 import '../../common_components_ios/custom_appbar_ios/view/custom_appbar.dart';
 import '../controller/sales_crm_entry_point_ios_controller.dart';
 
@@ -14,6 +15,8 @@ class SalesCrmEntryPointIOS extends StatelessWidget {
   SalesCrmEntryPointIOS({super.key});
   final SalesCrmEntryPointIosController _salesCrmEntryPointIosController =
       Get.put(SalesCrmEntryPointIosController());
+  //     final SalesCrmEntryPointAndroidController _controller =
+  // Get.put(SalesCrmEntryPointAndroidController());
 
   @override
   Widget build(BuildContext context) {

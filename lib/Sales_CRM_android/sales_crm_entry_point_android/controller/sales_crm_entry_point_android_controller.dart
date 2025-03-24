@@ -12,7 +12,9 @@ import '../../views/leads/all_leads_screen/screen/lead_screen.dart';
 
 class SalesCrmEntryPointAndroidController extends GetxController {
   late PageController pageController;
+  // late ScrollController scrollController;
   RxInt currentPage = 0.obs;
+  // RxBool isBottomBarVisible = true.obs;
 
   List<Widget> pages = [
     CalendarScreen(),
@@ -40,12 +42,27 @@ class SalesCrmEntryPointAndroidController extends GetxController {
   @override
   void onInit() {
     pageController = PageController(initialPage: 0);
+    // scrollController = ScrollController();
+
+
+    /// Tried to add hideable bottom bar but it is not working
+    // Listen to scroll events
+    // scrollController.addListener(() {
+    //   if (scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+    //     isBottomBarVisible.value = false; // Hide BottomBar when scrolling down
+    //   } else if (scrollController.position.userScrollDirection == ScrollDirection.forward) {
+    //     isBottomBarVisible.value = true; // Show BottomBar when scrolling up
+    //   }
+    // });
+
     super.onInit();
   }
 
   @override
   void dispose() {
     pageController.dispose();
+    // scrollController.dispose();
     super.dispose();
   }
 }
+

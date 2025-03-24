@@ -16,7 +16,6 @@ class CalendarScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Calendar'),
         actions: [
-          // Popup menu to switch between Month, Week, Day view
           PopupMenuButton<String>(
             onSelected: (view) {
               calendarControllerX.changeView(view);
@@ -46,17 +45,24 @@ class CalendarScreen extends StatelessWidget {
         ],
       ),
       body: CalendarWidget(), // Display the calendar view
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Open Event Form Modal when FAB is pressed
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return EventFormModal();  // Open the event form
-            },
-          );
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.72,
+            right: MediaQuery.of(context).size.width * 0.01,
+              child: FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: (){
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return EventFormModal();
+                      }
+                  );
+                },
+              ),
+          )
+        ],
       ),
     );
   }

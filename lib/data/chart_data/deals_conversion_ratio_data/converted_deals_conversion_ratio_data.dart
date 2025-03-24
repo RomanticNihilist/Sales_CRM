@@ -1,13 +1,15 @@
-class SectorChartData {
+import 'deals_conversion_ratio_data.dart';
+
+class DealConversionRatioData {
   final List<String> xData;
   final List<int> yData;
 
-  SectorChartData({required this.xData, required this.yData});
+  DealConversionRatioData({required this.xData, required this.yData});
 
-  factory SectorChartData.fromRawData(List<Map<String, dynamic>> rawData) {
-    List<String> keys = rawData.map((item) => item['key'] as String).toList();
-    List<int> values = rawData.map((item) => item['value'] as int).toList();
+  factory DealConversionRatioData.fromRawData(List<Map<String, dynamic>> rawData) {
+    List<String> keys = rawDealConversionRateData.map((item) => item['key'] as String).toList();
+    List<int> values = rawDealConversionRateData.map((item) => item['value'] as int).toList();
 
-    return SectorChartData(xData: keys, yData: values);
+    return DealConversionRatioData(xData: keys, yData: values);
   }
 }

@@ -9,17 +9,18 @@ class CustomCardViewIos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(6.0),
       width: double.infinity,
       height: height, // Adjust the height as needed
       decoration: BoxDecoration(
-        color: CupertinoColors.white,
+        color: CupertinoColors.systemGrey6,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: CupertinoColors.systemGrey.withOpacity(0.3),
-            blurRadius: 4,
-            spreadRadius: 4,
+            color: CupertinoColors.systemGrey.withOpacity(0.4),
+            blurRadius: 2,
+            spreadRadius: 0,
+            offset: Offset(0, 4)
           ),
         ],
       ),
