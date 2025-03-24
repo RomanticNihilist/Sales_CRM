@@ -22,7 +22,7 @@ class SalesCrmEntryPointIosController extends GetxController {
     AccountsIos(),
     DealsIos(),
     BillingIos(),
-    SummaryIos()
+    // SummaryIos()
   ];
 
   void goToTab(int page) {
