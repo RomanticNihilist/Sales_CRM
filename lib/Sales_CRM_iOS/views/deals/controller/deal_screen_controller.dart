@@ -18,10 +18,10 @@ class AllDealsControllerIos extends GetxController {
   void sortDeals() {
     if (sortBy.value == 'dealName') {
       dealsList.sort((a, b) => a.dealName.compareTo(b.dealName));
-      sortByName.value = 'Organisation Name';
+      sortByName.value = 'Deal Name';
     } else if (sortBy.value == 'dealStatus') {
       dealsList.sort((a, b) => a.dealStatus.compareTo(b.dealStatus));
-      sortByName.value = 'Lead Status';
+      sortByName.value = 'Deal Status';
     } else if (sortBy.value == 'updatedOn') {
       // Sort by updated date descending so latest is on top.
       dealsList.sort((a, b) => b.updatedOn.compareTo(a.updatedOn));

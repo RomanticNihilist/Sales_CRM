@@ -51,29 +51,33 @@ class Deal {
 
   factory Deal.fromJson(Map<String, dynamic> json) {
     return Deal(
-      dealNo: json['dealNo'],
+      dealNo: json['dealNo'] ?? "",
       dealName: json['dealName'],
       currency: json['currency'],
-      expectedRevenue: json['expectedRevenue'],
-      dealStartDate: json['dealStartDate'],
-      accountDetails: AccountDetails.fromJson(json['accountDetails']),
-      productDetails: (json['productDetails'] as Map<String, dynamic>).map(
-            (key, value) => MapEntry(key, ProductDetail.fromJson(value)),
-      ),
-      isDebtRevenue: json['isDebtRevenue'],
-      copyDealCheck: json['copyDealCheck'],
+      expectedRevenue: json['expectedRevenue'].toString(),
+      dealStartDate: json['dealStartDate'] ?? "",
+      accountDetails: AccountDetails.fromJson(json['accountDetails'] ?? {}),
+      productDetails:
+          (json['productDetails'] as Map).cast<String, dynamic>().map(
+                (key, value) => MapEntry(key, ProductDetail.fromJson(value)),
+              ),
+      isDebtRevenue: json['isDebtRevenue'] ?? false,
+      copyDealCheck: json['copyDealCheck'] ?? false,
       dealIdentifier: json['dealIdentifier'],
-      olddealIdentifier: json['olddealIdentifier'],
-      contactDetails: json['contactDetails'] ?? {},
+      olddealIdentifier: json['olddealIdentifier'] ?? "", // Added default value
+      contactDetails: (json['contactDetails'] is Map)
+          ? (json['contactDetails'] as Map).cast<String, dynamic>()
+          : {},
       dealStatus: json['dealStatus'],
       updatedOn: DateTime.parse(json['updatedOn']),
-      createdBy: json['createdBy'],
-      parentDealId: json['parentDealId'],
-      approvedBy: json['approvedBy'],
-      voType: List<String>.from(json['voType']),
-      selectedNotificationIds: List<String>.from(json['selectedNotificationIds']),
-      accountName: json['accountName'],
-      clientName: json['clientName'],
+      createdBy: json['createdBy'] ?? "",
+      parentDealId: json['parentDealId'] ?? "", // Added default value
+      approvedBy: json['approvedBy'] ?? "",
+      voType: List<String>.from(json['voType'] ?? []),
+      selectedNotificationIds:
+          List<String>.from(json['selectedNotificationIds'] ?? []),
+      accountName: json['accountName'] ?? "",
+      clientName: json['clientName'] ?? "",
       activeStatus: json['activeStatus'],
       dealProductTypeArray: List<String>.from(json['dealProductTypeArray']),
     );
@@ -87,7 +91,8 @@ class Deal {
       'expectedRevenue': expectedRevenue,
       'dealStartDate': dealStartDate,
       'accountDetails': accountDetails.toJson(),
-      'productDetails': productDetails.map((key, value) => MapEntry(key, value.toJson())),
+      'productDetails':
+          productDetails.map((key, value) => MapEntry(key, value.toJson())),
       'isDebtRevenue': isDebtRevenue,
       'copyDealCheck': copyDealCheck,
       'dealIdentifier': dealIdentifier,
@@ -114,7 +119,7 @@ class AccountDetails {
   AccountDetails({required this.accountName});
 
   factory AccountDetails.fromJson(Map<String, dynamic> json) {
-    return AccountDetails(accountName: json['accountName']);
+    return AccountDetails(accountName: json['accountName'] ?? "");
   }
 
   Map<String, dynamic> toJson() {
@@ -139,8 +144,8 @@ class ProductDetail {
     return ProductDetail(
       productIdentifier: json['productIdentifier'],
       productType: json['productType'],
-      projectManager: json['projectManager'],
-      productDescription: json['productDescription'],
+      projectManager: json['projectManager'] ?? "",
+      productDescription: json['productDescription'] ?? "",
     );
   }
 

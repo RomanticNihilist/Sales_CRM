@@ -22,7 +22,7 @@ class AuthController extends GetxController {
       // } else if (Platform.isIOS) {
       //   Get.offAll(() => SalesCrmEntryPointIOS());
       // }
-       Get.offAll(() => SalesCrmEntryPointIOS());
+      Get.offAll(() => SalesCrmEntryPointIOS());
       Get.snackbar(
         "Success",
         "Logged in successfully!",

@@ -36,21 +36,21 @@ class AllDealsHeaderIos extends StatelessWidget {
                     children: [
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        child: Text("Organization Name"),
+                        child: Text("Deal Name"),
                         onPressed: () {
                           Get.back();
                           _allDealsControllerIos.sortBy.value =
-                          "organisationName";
+                          "dealName";
                           _allDealsControllerIos.sortDeals();
                         },
                       ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        child: Text("Status"),
+                        child: Text("Deal Status"),
                         onPressed: () {
                           Get.back();
                           _allDealsControllerIos.sortBy.value =
-                          "leadStatus";
+                          "dealStatus";
                           _allDealsControllerIos.sortDeals();
                         },
                       ),
