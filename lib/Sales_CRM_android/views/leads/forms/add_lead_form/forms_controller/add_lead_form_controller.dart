@@ -1,30 +1,28 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
+import 'package:uuid/uuid.dart';
 import '../../../../../../components/generic_dropdown_component/controller/generic_dropdown_controller.dart';
+import '../../../../../../data/lead_data/converted_all_lead_data.dart';
+import '../../../all_leads_screen/controller/lead_controller.dart';
 
 class LeadFormController extends GetxController {
-  // State management for UI elements
+  final LeadController leadController = Get.find<LeadController>();
+
   var isExpanded = false.obs;
 
   void toggleExpanded() {
     isExpanded.value = !isExpanded.value;
   }
 
-  GenericDropdownController<String> sectorDropdownController = GenericDropdownController<String>(
-    displayValue: (item) => item,
-  );
+  GenericDropdownController<String> sectorDropdownController =
+  GenericDropdownController<String>(displayValue: (item) => item);
 
-  GenericDropdownController<String> sourceDropdownController = GenericDropdownController<String>(
-    displayValue: (item) => item,
-  );
+  GenericDropdownController<String> sourceDropdownController =
+  GenericDropdownController<String>(displayValue: (item) => item);
 
-  GenericDropdownController<String> countryDropdownController = GenericDropdownController<String>(
-    displayValue: (item) => item,
-  );
+  GenericDropdownController<String> countryDropdownController =
+  GenericDropdownController<String>(displayValue: (item) => item);
 
-  // Controllers for each input field
   TextEditingController organizationNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController contactNumberController = TextEditingController();
@@ -38,19 +36,25 @@ class LeadFormController extends GetxController {
   TextEditingController zipCodeController = TextEditingController();
   TextEditingController countryController = TextEditingController();
 
-  // Method to save the contact information (logic can be added here)
   void saveLead() {
-    if (kDebugMode) {
-      print('Organization Name: ${organizationNameController.text}');
-      print('Number of Employees: ${numberOfEmployeesController.text}');
-      print('Sector: ${sectorController.text}');
-      print('Source: ${sourceController.text}');
-      print('Website: ${websiteController.text}');
-      print('Street: ${streetController.text}');
-      print('City: ${cityController.text}');
-      print('State: ${stateController.text}');
-      print('ZIP/Postal Code: ${zipCodeController.text}');
-      print('Country: ${countryController.text}');
-    }
+    final Lead lead = Lead(
+      email: emailController.text,
+      leadStatus: "Lead Created",
+      noOfEmployees: numberOfEmployeesController.text,
+      organisationName: organizationNameController.text,
+      orgContactNo: contactNumberController.text,
+      sector: sectorController.text,
+      salesManager: "Agniva Bhattacharjee",
+      updatedOn: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour,
+        DateTime.now().minute,
+      ),
+      leadIdentifier: Uuid().v4(),
+    );
+    leadController.addLead(lead);
+    Get.back();
   }
 }
