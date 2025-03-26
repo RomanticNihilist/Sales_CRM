@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_android/views/leads/lead_details/lead_attachment/screen/lead_attachment.dart';
 
 import '../../../../../data/lead_data/converted_all_lead_data.dart';
 import '../controller/lead_details_controller.dart';
@@ -35,9 +36,7 @@ class AllLeadDetails extends StatelessWidget {
           LeadDetailPage(
             lead: lead,
           ),
-          Center(
-            child: Text("It's rainy here"),
-          ),
+          LeadAttachment(),
         ],
       ),
     );

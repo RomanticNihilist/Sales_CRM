@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../../data/lead_data/converted_all_lead_data.dart';
+import '../../widget/custom_expansion_tile.dart';
 
 class LeadDetailPage extends StatelessWidget {
   final Lead lead;
@@ -14,9 +15,10 @@ class LeadDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // _cardView(),
-              _buildExpandableSection(
-                "Organisation Details",
-                [
+              CustomExpansionTile(
+                title:"Organisation Details",
+                initiallyExpanded: true,
+                children:[
                   _buildDetailRow(
                       Icons.business, "Organisation", lead.organisationName),
                   _buildDetailRow(Icons.work, "Sector", lead.sector),
@@ -25,12 +27,11 @@ class LeadDetailPage extends StatelessWidget {
                   _buildDetailRow(Icons.group, "Employees",
                       lead.noOfEmployees?.toString() ?? 'N/A'),
                 ],
-                initiallyExpanded: true,
               ),
               const SizedBox(height: 20),
-              _buildExpandableSection(
-                "Contact Information",
-                [
+              CustomExpansionTile(
+                title: "Contact Information",
+                children : [
                   _buildDetailRow(Icons.email, "Email", lead.email),
                   _buildDetailRow(Icons.phone, "Contact", lead.orgContactNo),
                   _buildDetailRow(

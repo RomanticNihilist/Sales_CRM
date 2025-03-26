@@ -40,7 +40,7 @@ class LeadsIos extends StatelessWidget {
                     salesManager: lead.salesManager,
                     onTap:(){
                       Get.to(LeadDetailsScreenIos(
-                        email: lead.email,
+                        leadData: lead,
                       ));
                     }
                   );

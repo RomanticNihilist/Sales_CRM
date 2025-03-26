@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/deals/forms/screen/add_deal_form_ios.dart';
 
 import '../../custom_card_view_ios/custom_card_view_ios.dart';
 
@@ -24,10 +26,10 @@ class ListViewScreenIos extends StatelessWidget {
             color: CupertinoColors.systemGrey4,
             borderRadius: BorderRadius.circular(50.0),
           ),
-          child: Center(child: Text(salesManager.substring(0,1).toUpperCase(), style: TextStyle(
+          child: Center(child: salesManager != "" ? Text(salesManager.substring(0,1).toUpperCase(), style: TextStyle(
             color: CupertinoColors.black,
             fontSize: 20.0,
-          ),)),
+          ),) : Text(""),),
         ),
         subtitle: Text("Status : $status", style: TextStyle(
           fontSize: 13.0,

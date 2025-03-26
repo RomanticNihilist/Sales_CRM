@@ -4,8 +4,8 @@ import 'package:iconly/iconly.dart';
 import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/bottom_modal_ios/widget/bottom_modal_ios.dart';
 import 'package:sale_crm/Sales_CRM_iOS/common_components_ios/custom_appbar_ios/controller/custom_appbar_controller.dart';
 import 'package:sale_crm/Sales_CRM_iOS/views/contacts/screen/add_contact_ios.dart';
-
-import '../../../../Sales_CRM_android/views/contacts/forms/add_contact.dart';
+import 'package:sale_crm/Sales_CRM_iOS/views/deals/forms/screen/add_deal_form_ios.dart';
+import '../../../views/deals/forms/controller/add_deal_form_ios_controller.dart';
 import '../../../views/leads/forms/form_screen/add_lead_form_ios.dart';
 import '../../search_bar_ios/widget/search_bar_widget.dart';
 
@@ -116,6 +116,10 @@ class CustomAppbar extends StatelessWidget
                             ),
                           ),
                         );
+                      }
+                      else if(_customAppbarController.getAppBarTitle() ==
+                          "Deals"){
+                        Get.to(AddDealFormIos());
                       }
                     },
                     child: Icon(CupertinoIcons.plus),
