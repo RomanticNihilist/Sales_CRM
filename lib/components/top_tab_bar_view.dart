@@ -30,7 +30,7 @@ class _TabBarViewState extends State<TabBarView> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 70.0),
       child: CupertinoSlidingSegmentedControl<int>(
-        backgroundColor: CupertinoColors.systemGrey2,
+        backgroundColor: CupertinoColors.systemGrey3,
         thumbColor: widget.tabs[_selectedIndex].color,
         groupValue: _selectedIndex,
         onValueChanged: (int? value) {

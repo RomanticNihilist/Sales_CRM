@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sale_crm/data/lead_data/converted_all_lead_data.dart';
 
+import '../../../../../components/top_tab_bar_view.dart';
+import '../widget/details_tab_content.dart';
+
 class LeadDetailsScreenIos extends StatelessWidget {
   final Lead leadData;
   const LeadDetailsScreenIos({super.key, required this.leadData});
@@ -11,37 +14,50 @@ class LeadDetailsScreenIos extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: Text(leadData.organisationName),
       ),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.25,
-        width: double.infinity,
-        margin: EdgeInsets.only(top:60.0, left: 10.0, right: 10.0),
-        decoration: BoxDecoration(
-            
-          border: Border(
-            top: BorderSide(
-              color: CupertinoColors.systemGrey5,
-              width: 1.0,
-            ),
-            bottom: BorderSide(
-              color: CupertinoColors.systemGrey5,
-              width: 1.0,
-            ),
-          ),
-        ),
-        padding: EdgeInsets.all(16.0),
+      child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Lead Status: ${leadData.leadStatus}"),
-            SizedBox(
-              height: 8.0,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  CupertinoListTile(
+                    title: Text("Sales Manager"),
+                    subtitle: Text(leadData.salesManager),
+                    trailing: Container(
+                      width: 40.0,
+                      height: 40.0,
+                      decoration: BoxDecoration(
+                        color: CupertinoColors.systemGrey3,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Center(child: Text(leadData.salesManager.substring(0,1).toUpperCase())),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text("Sales Manager: ${leadData.salesManager}"),
-            SizedBox(
-              height: 8.0,
+            Center(
+              child: TabBarView(
+                tabs: [
+                  TabItem(name: 'Details', color: CupertinoColors.systemGrey),
+                  TabItem(name: 'Related', color: CupertinoColors.systemGrey),
+                ],
+                onTabChanged: (index) {
+                  switch(index){
+                    case 0:
+                      DetailsTabContent(leadDetails: leadData,);
+                      break;
+                    case 1:
+                      print("Related");
+                      break;
+                  }
+                },
+              ),
             ),
-            Text(
-                "Updated On: ${leadData.updatedOn.day}/${leadData.updatedOn.month}/${leadData.updatedOn.year}"),
+            SizedBox(height: 10.0,),
+            DetailsTabContent(leadDetails: leadData,),
           ],
         ),
       ),

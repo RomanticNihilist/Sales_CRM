@@ -19,16 +19,16 @@ class SalesCRM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
-      // return GetMaterialApp(
-      //   debugShowCheckedModeBanner: false,
-      //   title: 'Sales CRM App',
-      //   home: SplashScreen(),
-      // );
-      return GetCupertinoApp(
+      return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Sales CRM IOS",
-        home: SplashScreenIos(),
+        title: 'Sales CRM App',
+        home: SplashScreen(),
       );
+      // return GetCupertinoApp(
+      //   debugShowCheckedModeBanner: false,
+      //   title: "Sales CRM IOS",
+      //   home: SplashScreenIos(),
+      // );
     }
     else{
       return GetCupertinoApp(
