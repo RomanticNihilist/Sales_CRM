@@ -43,12 +43,13 @@ dependencies:
   iconly: ^1.0.1
   zoom_tap_animation: ^1.1.0
   flutter_speed_dial: ^7.0.0
-  syncfusion_flutter_calendar:
+  syncfusion_flutter_calendar: ^28.1.33
   flutter_secure_storage: ^8.0.0
   syncfusion_flutter_charts:
   multi_dropdown: ^3.0.1
   intl: 
   animated_notch_bottom_bar: ^1.0.3
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
