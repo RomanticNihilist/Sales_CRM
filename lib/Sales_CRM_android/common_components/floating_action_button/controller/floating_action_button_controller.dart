@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/controller/sales_crm_entry_point_android_controller.dart';
+import 'package:sale_crm/Sales_CRM_android/views/deals/forms/add_dealsform_screen.dart';
 
 import '../../../views/contacts/forms/add_contact.dart';
 import '../../../views/leads/forms/add_lead_form/forms_screen/add_lead_form_screen.dart';
 
-class FloatingActionButtonController extends GetxController{
-  final SalesCrmEntryPointAndroidController _salesCrmEntryPointAndroidController = Get.find<SalesCrmEntryPointAndroidController>();
+class FloatingActionButtonController extends GetxController {
+  final SalesCrmEntryPointAndroidController
+      _salesCrmEntryPointAndroidController =
+      Get.find<SalesCrmEntryPointAndroidController>();
 
-  RxInt get currentPageIndex => _salesCrmEntryPointAndroidController.currentPage;
+  RxInt get currentPageIndex =>
+      _salesCrmEntryPointAndroidController.currentPage;
 
   List<SpeedDialChild> getSpeedDialOptions() {
     if (currentPageIndex.value == 2) {
@@ -32,7 +36,7 @@ class FloatingActionButtonController extends GetxController{
         SpeedDialChild(
           child: Icon(Icons.person_add),
           label: "Add Contact",
-          onTap: (){
+          onTap: () {
             Get.to(AddContactScreen());
           },
         ),
@@ -40,6 +44,16 @@ class FloatingActionButtonController extends GetxController{
           child: Icon(Icons.import_contacts),
           label: "Import from Address Book",
           onTap: () => print("Import Contact Clicked"),
+        ),
+      ];
+    } else if (currentPageIndex.value == 5) {
+      return [
+        SpeedDialChild(
+          child: Icon(Icons.person_add),
+          label: "Add Deals",
+          onTap: () {
+            Get.to(AddDealsFormScreen());
+          },
         ),
       ];
     } else {

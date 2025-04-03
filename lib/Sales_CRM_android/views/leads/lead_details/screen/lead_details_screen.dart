@@ -7,7 +7,8 @@ import '../controller/lead_details_controller.dart';
 import '../lead_all_details/screen/lead_all_details.dart';
 
 class AllLeadDetails extends StatelessWidget {
-  final LeadDetailsController leadDetailsController = Get.put(LeadDetailsController());
+  final LeadDetailsController leadDetailsController =
+      Get.put(LeadDetailsController());
   final Lead lead;
   AllLeadDetails({super.key, required this.lead});
 

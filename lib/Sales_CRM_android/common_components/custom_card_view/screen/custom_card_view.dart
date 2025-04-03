@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CustomCardView extends StatelessWidget{
+class CustomCardView extends StatelessWidget {
   final Widget widget;
-  const CustomCardView({super.key, required this.widget});
+  final double? height;
+  const CustomCardView({super.key, required this.widget, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +13,10 @@ class CustomCardView extends StatelessWidget{
         borderRadius: BorderRadius.circular(12),
       ),
       child: Container(
-        width: double.infinity,
-        height: 300, // Adjust the height as needed
-        padding: const EdgeInsets.all(16.0),
-        child: widget
-      ),
+          width: double.infinity,
+          height: height ?? 300, // Adjust the height as needed
+          padding: const EdgeInsets.all(16.0),
+          child: widget),
     );
   }
 }

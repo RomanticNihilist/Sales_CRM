@@ -14,15 +14,12 @@ class LeadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Stack(
-          children: [
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.72,
-              right: MediaQuery.of(context).size.width * 0.01,
-              child: FloatingActionButtonComponent()
-            )
-          ]
-      ),
+      floatingActionButton: Stack(children: [
+        Positioned(
+            top: MediaQuery.of(context).size.height * 0.72,
+            right: MediaQuery.of(context).size.width * 0.01,
+            child: FloatingActionButtonComponent())
+      ]),
       appBar: AppBar(
         title: const Text("All Leads"),
         actions: [
@@ -85,6 +82,7 @@ class LeadScreen extends StatelessWidget {
                 child: leadController.isSearchVisible.value
                     ? SearchBarComponent(
                         onSearch: leadController.filterLeads,
+                        hintText: 'Search leads...',
                       )
                     : SizedBox(),
               ),

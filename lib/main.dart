@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sale_crm/Sales_CRM_android/sales_crm_entry_point_android/screen/sales_crm_entry_point_android.dart';
 import 'package:sale_crm/services/api_service.dart';
 import 'package:sale_crm/splash_screen.dart';
 import 'authentication/login_ios.dart';
@@ -22,15 +23,15 @@ class SalesCRM extends StatelessWidget {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Sales CRM App',
-        home: SplashScreen(),
+        // home: SplashScreen(), // commment for developing purpose need to comment out  later
+        home: SalesCrmEntryPointAndroid(),
       );
       // return GetCupertinoApp(
       //   debugShowCheckedModeBanner: false,
       //   title: "Sales CRM IOS",
       //   home: SplashScreenIos(),
       // );
-    }
-    else{
+    } else {
       return GetCupertinoApp(
         debugShowCheckedModeBanner: false,
         title: "Sales CRM IOS",
