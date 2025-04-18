@@ -7,6 +7,7 @@ import 'package:sale_crm/Sales_CRM_android/common_components/custom_card_view/sc
 import 'package:sale_crm/Sales_CRM_android/common_components/custom_search_bar/screen/search_bar_component.dart';
 import 'package:sale_crm/Sales_CRM_android/common_components/floating_action_button/view/floating_action_button.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/controller/deals_controller.dart';
+import 'package:sale_crm/Sales_CRM_android/views/deals/screen/deals_details_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/leads/all_leads_screen/controller/lead_controller.dart';
 import 'package:sale_crm/Sales_CRM_android/views/leads/lead_details/screen/lead_details_screen.dart';
 import 'package:sale_crm/data/chart_data/deals_conversion_ratio_data/converted_deals_conversion_ratio_data.dart';
@@ -38,27 +39,27 @@ class DealsScreen extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(
-            //       10, 10, 10, 0), // add right padding too
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment
-            //         .spaceBetween, // <-- like justify-content: space-between
-            //     children: [
-            //       const Text(
-            //         "All Deals",
-            //         style: TextStyle(fontSize: 20),
-            //       ),
-            //       IconButton(
-            //         icon: const Icon(Icons.search),
-            //         onPressed: () {
-            //           // print("use for toggle");
-            //           dealsController.toggleSearchVisibility();
-            //         },
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  10, 10, 10, 0), // add right padding too
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // <-- like justify-content: space-between
+                children: [
+                  const Text(
+                    'Deals Conversion Ratio',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      // print("use for toggle");
+                      dealsController.toggleSearchVisibility();
+                    },
+                  ),
+                ],
+              ),
+            ),
             // Padding(
             //   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             //   child: SingleChildScrollView(
@@ -77,13 +78,6 @@ class DealsScreen extends StatelessWidget {
             //   ),
             // ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: const Text(
-                'Deals Conversion Ratio', // Title for the chart
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
             CustomCardView(
               height: 190,
               widget: ChartComponent(dealConversionRatioData.xData,
@@ -113,7 +107,7 @@ class DealsScreen extends StatelessWidget {
                         "${lead.updatedOn.day}/${lead.updatedOn.month}/${lead.updatedOn.year}",
                       ),
                       onTap: () {
-                        Get.to(() => AllLeadDetails(lead: lead));
+                        Get.to(() => AllDealsDetails(lead: lead));
                       },
                     ),
                   );

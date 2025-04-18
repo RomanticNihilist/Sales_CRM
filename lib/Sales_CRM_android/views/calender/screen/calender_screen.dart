@@ -6,11 +6,11 @@ import '../controller/calender_controller.dart';
 import '../forms/form_screen/event_management_form_widget.dart';
 import '../widgets/calender_widgets.dart';
 
-
 class CalendarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final CalendarControllerX calendarControllerX = Get.put(CalendarControllerX()); // Initialize the controller
+    final CalendarControllerX calendarControllerX =
+        Get.put(CalendarControllerX()); // Initialize the controller
 
     return Scaffold(
       appBar: AppBar(
@@ -50,25 +50,19 @@ class CalendarScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.72,
             right: MediaQuery.of(context).size.width * 0.01,
-              child: FloatingActionButton(
-                child: Icon(Icons.add),
-                onPressed: (){
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return EventFormModal();
-                      }
-                  );
-                },
-              ),
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return EventFormModal();
+                    });
+              },
+            ),
           )
         ],
       ),
     );
   }
 }
-
-
-
-
-

@@ -221,8 +221,6 @@ import '../../../../../services/api_service.dart';
 //   }
 // }
 
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -238,12 +236,12 @@ class EventFormModal extends StatelessWidget {
   final TextEditingController _descriptionController = TextEditingController();
 
   final GenericDropdownController<String> repeatMeetingController =
-  GenericDropdownController<String>(displayValue: (item) => item);
+      GenericDropdownController<String>(displayValue: (item) => item);
   final GenericDropdownController<String> remindBeforeController =
-  GenericDropdownController<String>(displayValue: (item) => item);
+      GenericDropdownController<String>(displayValue: (item) => item);
 
   final GenericDropdownController<Map<String, dynamic>> userController =
-  GenericDropdownController<Map<String, dynamic>>(
+      GenericDropdownController<Map<String, dynamic>>(
     displayValue: (user) => user['USER_NAME'],
   );
 
@@ -261,45 +259,45 @@ class EventFormModal extends StatelessWidget {
     "24 hours"
   ];
 
-  final ApiService _apiService = Get.find<ApiService>();
+  // final ApiService _apiService = Get.find<ApiService>();
 
   // Store Future to prevent multiple API calls
-  final Future<List<Map<String, dynamic>>> _futureActiveUsers;
+  // final Future<List<Map<String, dynamic>>> _futureActiveUsers;
 
-  EventFormModal({super.key})
-      : _futureActiveUsers = getActiveUsersMap();
+  // EventFormModal({super.key})
+  //     : _futureActiveUsers = getActiveUsersMap();
 
-  static Future<List<Map<String, dynamic>>> getActiveUsersMap() async {
-    try {
-      List<dynamic>? users = await Get.find<ApiService>().getAllUsers();
+  // static Future<List<Map<String, dynamic>>> getActiveUsersMap() async {
+  //   try {
+  //     List<dynamic>? users = await Get.find<ApiService>().getAllUsers();
 
-      if (users == null || users.isEmpty) {
-        print("No users found");
-        return [];
-      }
+  //     if (users == null || users.isEmpty) {
+  //       print("No users found");
+  //       return [];
+  //     }
 
-      print("API Response: $users");
+  //     print("API Response: $users");
 
-      List<Map<String, dynamic>> activeUsersList = users
-          .whereType<Map<String, dynamic>>() // Ensure each item is a Map
-          .where((user) => user['ACTIVE'] == true) // FIXED: Corrected boolean check
-          .map((user) => {
-        'USER_ID': user['USER_ID']?.toString() ?? '',
-        'USER_NAME': user['USER_NAME']?.toString() ?? 'Unknown',
-      })
-          .where((user) => user['USER_ID']!.isNotEmpty) // Ensure valid ID
-          .toList();
+  //     List<Map<String, dynamic>> activeUsersList = users
+  //         .whereType<Map<String, dynamic>>() // Ensure each item is a Map
+  //         .where((user) =>
+  //             user['ACTIVE'] == true) // FIXED: Corrected boolean check
+  //         .map((user) => {
+  //               'USER_ID': user['USER_ID']?.toString() ?? '',
+  //               'USER_NAME': user['USER_NAME']?.toString() ?? 'Unknown',
+  //             })
+  //         .where((user) => user['USER_ID']!.isNotEmpty) // Ensure valid ID
+  //         .toList();
 
-      print("Final Active Users List: $activeUsersList");
+  //     print("Final Active Users List: $activeUsersList");
 
-      return activeUsersList;
-    } catch (error, stackTrace) {
-      print("Error while processing active users: $error");
-      print(stackTrace);
-      return [];
-    }
-  }
-
+  //     return activeUsersList;
+  //   } catch (error, stackTrace) {
+  //     print("Error while processing active users: $error");
+  //     print(stackTrace);
+  //     return [];
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +307,8 @@ class EventFormModal extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
         insetPadding: EdgeInsets.all(16.0),
         child: Padding(
           padding: EdgeInsets.all(16.0),
@@ -340,44 +339,46 @@ class EventFormModal extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: Icon(Icons.event, color: theme.colorScheme.primary),
+                    prefixIcon:
+                        Icon(Icons.event, color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 16.0),
 
                   // FutureBuilder for Active Users Dropdown
-                  FutureBuilder<List<Map<String, dynamic>>>(
-                    future: _futureActiveUsers,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      }
+                  // FutureBuilder<List<Map<String, dynamic>>>(
+                  //   future: _futureActiveUsers,
+                  //   builder: (context, snapshot) {
+                  //     if (snapshot.connectionState == ConnectionState.waiting) {
+                  //       return Center(child: CircularProgressIndicator());
+                  //     }
 
-                      if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      }
+                  //     if (snapshot.hasError) {
+                  //       return Text('Error: ${snapshot.error}');
+                  //     }
 
-                      if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-                        return GenericDropdown<Map<String, dynamic>>(
-                          labelText: "Please Assign Member(s)",
-                          isMultiSelect: true,
-                          items: snapshot.data!,
-                          hintText: 'Username',
-                          displayValue: (user) => user['USER_NAME'],
-                          controller: userController,
-                          isMandatory: true,
-                        );
-                      } else {
-                        return Text('No active users found');
-                      }
-                    },
-                  ),
+                  //     if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                  //       return GenericDropdown<Map<String, dynamic>>(
+                  //         labelText: "Please Assign Member(s)",
+                  //         isMultiSelect: true,
+                  //         items: snapshot.data!,
+                  //         hintText: 'Username',
+                  //         displayValue: (user) => user['USER_NAME'],
+                  //         controller: userController,
+                  //         isMandatory: true,
+                  //       );
+                  //     } else {
+                  //       return Text('No active users found');
+                  //     }
+                  //   },
+                  // ),
                   SizedBox(height: 16.0),
 
                   CustomInput(
                     labelText: 'Meeting Link (if any)',
                     hintText: 'Enter meeting link',
                     controller: _meetingLinkController,
-                    prefixIcon: Icon(Icons.link, color: theme.colorScheme.primary),
+                    prefixIcon:
+                        Icon(Icons.link, color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 16.0),
 
@@ -393,7 +394,8 @@ class EventFormModal extends StatelessWidget {
                       }
                       return null;
                     },
-                    prefixIcon: Icon(Icons.calendar_today, color: theme.colorScheme.primary),
+                    prefixIcon: Icon(Icons.calendar_today,
+                        color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 16.0),
 
@@ -412,7 +414,8 @@ class EventFormModal extends StatelessWidget {
                             }
                             return null;
                           },
-                          prefixIcon: Icon(Icons.access_time, color: theme.colorScheme.primary),
+                          prefixIcon: Icon(Icons.access_time,
+                              color: theme.colorScheme.primary),
                         ),
                       ),
                       SizedBox(width: 16.0),
@@ -429,7 +432,8 @@ class EventFormModal extends StatelessWidget {
                             }
                             return null;
                           },
-                          prefixIcon: Icon(Icons.access_time_filled, color: theme.colorScheme.primary),
+                          prefixIcon: Icon(Icons.access_time_filled,
+                              color: theme.colorScheme.primary),
                         ),
                       ),
                     ],
@@ -444,7 +448,8 @@ class EventFormModal extends StatelessWidget {
                     isMultiSelect: false,
                     displayValue: (item) => item,
                     controller: repeatMeetingController,
-                    prefixIcon: Icon(Icons.refresh_outlined, color: theme.colorScheme.primary),
+                    prefixIcon: Icon(Icons.refresh_outlined,
+                        color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 16.0),
 
@@ -456,16 +461,17 @@ class EventFormModal extends StatelessWidget {
                     isMultiSelect: false,
                     displayValue: (item) => item,
                     controller: remindBeforeController,
-                    prefixIcon: Icon(Icons.access_alarm_outlined, color: theme.colorScheme.primary),
+                    prefixIcon: Icon(Icons.access_alarm_outlined,
+                        color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 16.0),
 
-
-              CustomInput(
+                  CustomInput(
                     labelText: 'Description',
                     hintText: 'Enter description',
                     controller: _descriptionController,
-                    prefixIcon: Icon(Icons.notes, color: theme.colorScheme.primary),
+                    prefixIcon:
+                        Icon(Icons.notes, color: theme.colorScheme.primary),
                   ),
                   SizedBox(height: 24.0),
 
@@ -496,4 +502,3 @@ class EventFormModal extends StatelessWidget {
     );
   }
 }
-

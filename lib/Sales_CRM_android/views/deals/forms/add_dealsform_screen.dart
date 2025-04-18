@@ -20,6 +20,16 @@ class AddDealsFormScreen extends StatelessWidget {
       "SOHOM TESTED"
     ];
 
+    final productName = [
+      "Professional Service",
+      "User License",
+      "Service level Agreement  ",
+      "Test App",
+      "Supplier management",
+      "Hcm",
+      "Ssd"
+    ];
+
     final accountManager = [
       "Nirupam sir",
       "Kunal sir",
@@ -131,7 +141,7 @@ class AddDealsFormScreen extends StatelessWidget {
                 GenericDropdown<String>(
                   labelText: 'Product Name',
                   isMandatory: true,
-                  items: accountName,
+                  items: productName,
                   displayValue: (item) => item,
                   controller: controller.accountnameDropdownController,
                   prefixIcon: const Icon(Icons.production_quantity_limits),

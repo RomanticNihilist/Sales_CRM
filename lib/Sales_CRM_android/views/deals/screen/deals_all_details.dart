@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sale_crm/Sales_CRM_android/views/leads/lead_details/widget/custom_expansion_tile.dart';
 import '../../../../../../data/lead_data/converted_all_lead_data.dart';
-import '../../widget/custom_expansion_tile.dart';
+// import '../../widget/custom_expansion_tile.dart';
 
-class LeadDetailPage extends StatelessWidget {
+class DealDetailPage extends StatelessWidget {
   final Lead lead;
-  const LeadDetailPage({super.key, required this.lead});
+  const DealDetailPage({super.key, required this.lead});
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +17,34 @@ class LeadDetailPage extends StatelessWidget {
             children: [
               // _cardView(),
               CustomExpansionTile(
-                title: "Organisation Details",
+                title: "Deal Details",
                 initiallyExpanded: true,
                 children: [
                   _buildDetailRow(
-                      Icons.business, "Organisation", lead.organisationName),
-                  _buildDetailRow(Icons.work, "Sector", lead.sector),
+                      Icons.menu, "Deal Name", "test variation from 2"),
+                  _buildDetailRow(Icons.account_box, "Account Maneger", "N/A"),
                   _buildDetailRow(
-                      Icons.track_changes, "Status", lead.leadStatus),
-                  _buildDetailRow(Icons.group, "Employees",
-                      lead.noOfEmployees?.toString() ?? 'N/A'),
+                      Icons.track_changes, "Status", "Deal Created"),
+                  _buildDetailRow(
+                      Icons.date_range, "Expected Closing Date", "10-20-2025"),
+                  _buildDetailRow(
+                      Icons.currency_exchange, "ACtual Revenue(USD)", "0.0000"),
+                  _buildDetailRow(Icons.currency_exchange,
+                      "Expected Revenue(USD)", "4,555,55550"),
                 ],
               ),
-              const SizedBox(height: 20),
-              CustomExpansionTile(
-                title: "Contact Information",
-                children: [
-                  _buildDetailRow(Icons.email, "Email", lead.email),
-                  _buildDetailRow(Icons.phone, "Contact", lead.orgContactNo),
-                  _buildDetailRow(
-                      Icons.person, "Sales Manager", lead.salesManager),
-                  _buildDetailRow(Icons.calendar_today, "Updated On",
-                      lead.updatedOn.toLocal().toString()),
-                ],
-              ),
+              // const SizedBox(height: 20),
+              // CustomExpansionTile(
+              //   title: "Contact Information",
+              //   children: [
+              //     _buildDetailRow(Icons.email, "Email", lead.email),
+              //     _buildDetailRow(Icons.phone, "Contact", lead.orgContactNo),
+              //     _buildDetailRow(
+              //         Icons.person, "Sales Manager", lead.salesManager),
+              //     _buildDetailRow(Icons.calendar_today, "Updated On",
+              //         lead.updatedOn.toLocal().toString()),
+              //   ],
+              // ),
             ],
           )),
     );

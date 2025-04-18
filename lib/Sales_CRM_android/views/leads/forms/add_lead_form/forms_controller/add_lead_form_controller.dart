@@ -15,13 +15,13 @@ class LeadFormController extends GetxController {
   }
 
   GenericDropdownController<String> sectorDropdownController =
-  GenericDropdownController<String>(displayValue: (item) => item);
+      GenericDropdownController<String>(displayValue: (item) => item);
 
   GenericDropdownController<String> sourceDropdownController =
-  GenericDropdownController<String>(displayValue: (item) => item);
+      GenericDropdownController<String>(displayValue: (item) => item);
 
   GenericDropdownController<String> countryDropdownController =
-  GenericDropdownController<String>(displayValue: (item) => item);
+      GenericDropdownController<String>(displayValue: (item) => item);
 
   TextEditingController organizationNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
