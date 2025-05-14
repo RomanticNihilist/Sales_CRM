@@ -4,7 +4,9 @@ import 'package:sale_crm/Sales_CRM_android/views/calender/forms/form_screen/even
 import 'package:sale_crm/Sales_CRM_android/views/calender/forms/form_screen/product_management_form_widget.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/Note.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/controller/Notes_controller.dart';
+import 'package:sale_crm/Sales_CRM_android/views/deals/controller/deals_details_professional_service_controller.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/screen/deals_pricing.dart';
+import 'package:sale_crm/Sales_CRM_android/views/deals/screen/deals_product_proffesionalservice_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/leads/lead_details/widget/custom_expansion_tile.dart';
 
 class DealAttachment extends StatelessWidget {
@@ -378,7 +380,10 @@ class DealAttachment extends StatelessWidget {
       onTap: () {
         // Navigate to the product details page with the product data using Get.to()
         Get.to(
-          DealsPricing(),
+          // DealsPricing(),
+          DealDetailsProfessionalScreen(),
+          binding: DealDetailsBinding(), // IMPORTANT: Apply binding
+
           arguments: {
             'productName': productName,
             'description': description,

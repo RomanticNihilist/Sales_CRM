@@ -34,14 +34,13 @@ class AllDealsDetails extends StatelessWidget {
         ),
       ),
       body: TabBarView(
-        controller: dealsDetailsController.tabController,
-        children: <Widget>[
-          DealDetailPage(
-            lead: lead,
-          ),
-          DealAttachment(),
-        ],
-      ),
+          controller: dealsDetailsController.tabController,
+          children: <Widget>[
+            DealDetailPage(
+              lead: lead,
+            ),
+            DealAttachment(),
+          ]),
     );
   }
 }

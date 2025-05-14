@@ -1,0 +1,2 @@
+C:/Users/KERLPTP-28/OneDrive/Desktop/Flutter/Sales_CRM/android/app/.cxx/RelWithDebInfo/165a6g3z/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/KERLPTP-28/OneDrive/Desktop/Flutter/Sales_CRM/android/app/.cxx/RelWithDebInfo/165a6g3z/x86_64/CMakeFiles/rebuild_cache.dir

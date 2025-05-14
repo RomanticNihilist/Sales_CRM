@@ -9,7 +9,6 @@ import 'package:sale_crm/Sales_CRM_android/common_components/floating_action_but
 import 'package:sale_crm/Sales_CRM_android/views/deals/controller/deals_controller.dart';
 import 'package:sale_crm/Sales_CRM_android/views/deals/screen/deals_details_screen.dart';
 import 'package:sale_crm/Sales_CRM_android/views/leads/all_leads_screen/controller/lead_controller.dart';
-import 'package:sale_crm/Sales_CRM_android/views/leads/lead_details/screen/lead_details_screen.dart';
 import 'package:sale_crm/data/chart_data/deals_conversion_ratio_data/converted_deals_conversion_ratio_data.dart';
 import 'package:sale_crm/data/chart_data/deals_conversion_ratio_data/deals_conversion_ratio_data.dart';
 
@@ -60,24 +59,6 @@ class DealsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            //   child: SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     child: Row(
-            //       children: const [
-            //         DealCard(title: 'Total No. of Deals', value: '202'),
-            //         SizedBox(width: 12),
-            //         DealCard(title: 'No. of Won Deals', value: '155'),
-            //         SizedBox(width: 12),
-            //         DealCard(title: 'No. of Active Deals', value: '48'),
-            //         SizedBox(width: 12),
-            //         DealCard(title: 'No. of Close Deals', value: '48'),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
             CustomCardView(
               height: 190,
               widget: ChartComponent(dealConversionRatioData.xData,
